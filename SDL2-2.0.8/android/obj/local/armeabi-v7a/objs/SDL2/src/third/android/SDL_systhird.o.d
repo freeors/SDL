@@ -1,0 +1,52 @@
+./obj/local/armeabi-v7a/objs/SDL2/src/third/android/SDL_systhird.o: \
+  jni/../../src/third/android/SDL_systhird.c \
+  jni/../../src/third/android/../SDL_third_c.h \
+  jni/../../src/third/android/../../SDL_internal.h \
+  jni/../../src/third/android/../../dynapi/SDL_dynapi.h \
+  jni/../../src/third/android/../../dynapi/SDL_dynapi_overrides.h \
+  jni/../../include\SDL_config.h jni/../../include/SDL_platform.h \
+  jni/../../include/begin_code.h jni/../../include/close_code.h \
+  jni/../../include/SDL_config_android.h jni/../../include\SDL_third.h \
+  jni/../../include/SDL_stdinc.h jni/../../include/SDL_error.h \
+  jni/../../include/SDL_video.h jni/../../include/SDL_pixels.h \
+  jni/../../include/SDL_endian.h jni/../../include/SDL_rect.h \
+  jni/../../include/SDL_rwops.h jni/../../include/SDL_surface.h \
+  jni/../../include/SDL_blendmode.h
+
+jni/../../src/third/android/../SDL_third_c.h:
+
+jni/../../src/third/android/../../SDL_internal.h:
+
+jni/../../src/third/android/../../dynapi/SDL_dynapi.h:
+
+jni/../../src/third/android/../../dynapi/SDL_dynapi_overrides.h:
+
+jni/../../include\SDL_config.h:
+
+jni/../../include/SDL_platform.h:
+
+jni/../../include/begin_code.h:
+
+jni/../../include/close_code.h:
+
+jni/../../include/SDL_config_android.h:
+
+jni/../../include\SDL_third.h:
+
+jni/../../include/SDL_stdinc.h:
+
+jni/../../include/SDL_error.h:
+
+jni/../../include/SDL_video.h:
+
+jni/../../include/SDL_pixels.h:
+
+jni/../../include/SDL_endian.h:
+
+jni/../../include/SDL_rect.h:
+
+jni/../../include/SDL_rwops.h:
+
+jni/../../include/SDL_surface.h:
+
+jni/../../include/SDL_blendmode.h:

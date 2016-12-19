@@ -1,0 +1,1291 @@
+/* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* vim:set ts=2 sw=2 sts=2 et cindent: */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+// In libAVCodec/fft_template.c, fft initialization happens via if statements
+// checked on preprocessor defines. On many platforms, these statements are
+// culled during compilation. However, in situations where optimization is
+// disabled on windows visual studio (PGO, using --disable-optimization in
+// mozconfig, etc), these branches are still compiled, meaning we end up with
+// linker errors due calls to undefined functions. The dummy functions in this
+// file provide bodies so that the library will link in that case, even though
+// these will never be called.
+
+#include "libAVCodec/aacpsdsp.h"
+#include "libAVCodec/AVCodec.h"
+#include "libAVCodec/fft.h"
+#include "libAVCodec/flacdsp.h"
+#include "libAVCodec/h264dec.h"
+#include "libAVCodec/h264pred.h"
+#include "libAVCodec/hpeldsp.h"
+#include "libAVCodec/imdct15.h"
+#include "libAVCodec/mpegaudiodsp.h"
+#include "libAVCodec/sbr.h"
+#include "libAVCodec/sbrdsp.h"
+#include "libAVCodec/videodsp.h"
+#include "libAVCodec/vorbisdsp.h"
+#include "libAVCodec/vp3dsp.h"
+#include "libAVCodec/vp8dsp.h"
+#include "libavformat/avformat.h"
+#include "libavformat/url.h"
+#include "libavutil/float_dsp.h"
+
+void ff_me_cmp_init_static(void) {}
+int ff_frame_thread_encoder_init(AVCodecContext *avctx, AVDictionary *options) { return 0; }
+void ff_frame_thread_encoder_free(AVCodecContext *avctx) {}
+int ff_thread_video_encode_frame(AVCodecContext *avctx, AVPacket *pkt, const AVFrame *frame, int *got_packet_ptr) { return 0; }
+
+AVInputFormat ff_a64_muxer;
+AVInputFormat ff_aa_demuxer;
+AVInputFormat ff_ac3_muxer;
+AVInputFormat ff_ac3_demuxer;
+AVInputFormat ff_acm_demuxer;
+AVInputFormat ff_act_demuxer;
+AVInputFormat ff_adf_demuxer;
+AVInputFormat ff_adp_demuxer;
+AVInputFormat ff_ads_demuxer;
+AVInputFormat ff_adts_muxer;
+AVInputFormat ff_adx_muxer;
+AVInputFormat ff_adx_demuxer;
+AVInputFormat ff_aea_demuxer;
+AVInputFormat ff_afc_demuxer;
+AVInputFormat ff_aiff_muxer;
+AVInputFormat ff_aiff_demuxer;
+AVInputFormat ff_aix_demuxer;
+AVInputFormat ff_amr_muxer;
+AVInputFormat ff_amr_demuxer;
+AVInputFormat ff_anm_demuxer;
+AVInputFormat ff_apc_demuxer;
+AVInputFormat ff_ape_demuxer;
+AVInputFormat ff_apng_muxer;
+AVInputFormat ff_apng_demuxer;
+AVInputFormat ff_aqtitle_demuxer;
+AVInputFormat ff_asf_muxer;
+AVInputFormat ff_asf_demuxer;
+AVInputFormat ff_asf_o_demuxer;
+AVInputFormat ff_ass_muxer;
+AVInputFormat ff_ass_demuxer;
+AVInputFormat ff_ast_muxer;
+AVInputFormat ff_ast_demuxer;
+AVInputFormat ff_asf_stream_muxer;
+AVInputFormat ff_au_muxer;
+AVInputFormat ff_au_demuxer;
+AVInputFormat ff_avi_muxer;
+AVInputFormat ff_avi_demuxer;
+AVInputFormat ff_avisynth_demuxer;
+AVInputFormat ff_avm2_muxer;
+AVInputFormat ff_avr_demuxer;
+AVInputFormat ff_avs_demuxer;
+AVInputFormat ff_bethsoftvid_demuxer;
+AVInputFormat ff_bfi_demuxer;
+AVInputFormat ff_bintext_demuxer;
+AVInputFormat ff_bink_demuxer;
+AVInputFormat ff_bit_muxer;
+AVInputFormat ff_bit_demuxer;
+AVInputFormat ff_bmv_demuxer;
+AVInputFormat ff_bfstm_demuxer;
+AVInputFormat ff_brstm_demuxer;
+AVInputFormat ff_boa_demuxer;
+AVInputFormat ff_c93_demuxer;
+AVInputFormat ff_caf_muxer;
+AVInputFormat ff_caf_demuxer;
+AVInputFormat ff_cavsvideo_muxer;
+AVInputFormat ff_cavsvideo_demuxer;
+AVInputFormat ff_cdg_demuxer;
+AVInputFormat ff_cdxl_demuxer;
+AVInputFormat ff_cine_demuxer;
+AVInputFormat ff_concat_demuxer;
+AVInputFormat ff_crc_muxer;
+AVInputFormat ff_dash_muxer;
+AVInputFormat ff_data_muxer;
+AVInputFormat ff_data_demuxer;
+AVInputFormat ff_daud_muxer;
+AVInputFormat ff_daud_demuxer;
+AVInputFormat ff_dcstr_demuxer;
+AVInputFormat ff_dfa_demuxer;
+AVInputFormat ff_dirac_muxer;
+AVInputFormat ff_dirac_demuxer;
+AVInputFormat ff_dnxhd_muxer;
+AVInputFormat ff_dnxhd_demuxer;
+AVInputFormat ff_dsf_demuxer;
+AVInputFormat ff_dsicin_demuxer;
+AVInputFormat ff_dss_demuxer;
+AVInputFormat ff_dts_muxer;
+AVInputFormat ff_dts_demuxer;
+AVInputFormat ff_dtshd_demuxer;
+AVInputFormat ff_dv_muxer;
+AVInputFormat ff_dv_demuxer;
+AVInputFormat ff_dvbsub_demuxer;
+AVInputFormat ff_dvbtxt_demuxer;
+AVInputFormat ff_dxa_demuxer;
+AVInputFormat ff_ea_demuxer;
+AVInputFormat ff_ea_cdata_demuxer;
+AVInputFormat ff_eac3_muxer;
+AVInputFormat ff_eac3_demuxer;
+AVInputFormat ff_epaf_demuxer;
+AVInputFormat ff_f4v_muxer;
+AVInputFormat ff_ffm_muxer;
+AVInputFormat ff_ffm_demuxer;
+AVInputFormat ff_ffmetadata_muxer;
+AVInputFormat ff_ffmetadata_demuxer;
+AVInputFormat ff_fifo_muxer;
+AVInputFormat ff_filmstrip_muxer;
+AVInputFormat ff_filmstrip_demuxer;
+AVInputFormat ff_flac_muxer;
+AVInputFormat ff_flic_demuxer;
+AVInputFormat ff_flv_muxer;
+AVInputFormat ff_flv_demuxer;
+AVInputFormat ff_live_flv_demuxer;
+AVInputFormat ff_fourxm_demuxer;
+AVInputFormat ff_framecrc_muxer;
+AVInputFormat ff_framehash_muxer;
+AVInputFormat ff_framemd5_muxer;
+AVInputFormat ff_frm_demuxer;
+AVInputFormat ff_fsb_demuxer;
+AVInputFormat ff_g722_muxer;
+AVInputFormat ff_g722_demuxer;
+AVInputFormat ff_g723_1_muxer;
+AVInputFormat ff_g723_1_demuxer;
+AVInputFormat ff_g729_demuxer;
+AVInputFormat ff_genh_demuxer;
+AVInputFormat ff_gif_muxer;
+AVInputFormat ff_gif_demuxer;
+AVInputFormat ff_gsm_muxer;
+AVInputFormat ff_gsm_demuxer;
+AVInputFormat ff_gxf_muxer;
+AVInputFormat ff_gxf_demuxer;
+AVInputFormat ff_h261_muxer;
+AVInputFormat ff_h261_demuxer;
+AVInputFormat ff_h263_muxer;
+AVInputFormat ff_h263_demuxer;
+AVInputFormat ff_h264_muxer;
+AVInputFormat ff_h264_demuxer;
+AVInputFormat ff_hash_muxer;
+AVInputFormat ff_hds_muxer;
+AVInputFormat ff_hevc_muxer;
+AVInputFormat ff_hevc_demuxer;
+AVInputFormat ff_hls_muxer;
+AVInputFormat ff_hls_demuxer;
+AVInputFormat ff_hnm_demuxer;
+AVInputFormat ff_ico_muxer;
+AVInputFormat ff_ico_demuxer;
+AVInputFormat ff_idcin_demuxer;
+AVInputFormat ff_idf_demuxer;
+AVInputFormat ff_iff_demuxer;
+AVInputFormat ff_ilbc_muxer;
+AVInputFormat ff_ilbc_demuxer;
+AVInputFormat ff_image2_muxer;
+AVInputFormat ff_image2_demuxer;
+AVInputFormat ff_image2pipe_muxer;
+AVInputFormat ff_image2pipe_demuxer;
+AVInputFormat ff_image2_alias_pix_demuxer;
+AVInputFormat ff_image2_brender_pix_demuxer;
+AVInputFormat ff_ingenient_demuxer;
+AVInputFormat ff_ipmovie_demuxer;
+AVInputFormat ff_ipod_muxer;
+AVInputFormat ff_ircam_muxer;
+AVInputFormat ff_ircam_demuxer;
+AVInputFormat ff_ismv_muxer;
+AVInputFormat ff_iss_demuxer;
+AVInputFormat ff_iv8_demuxer;
+AVInputFormat ff_ivf_muxer;
+AVInputFormat ff_ivf_demuxer;
+AVInputFormat ff_ivr_demuxer;
+AVInputFormat ff_jacosub_muxer;
+AVInputFormat ff_jacosub_demuxer;
+AVInputFormat ff_jv_demuxer;
+AVInputFormat ff_latm_muxer;
+AVInputFormat ff_lmlm4_demuxer;
+AVInputFormat ff_loas_demuxer;
+AVInputFormat ff_lrc_muxer;
+AVInputFormat ff_lrc_demuxer;
+AVInputFormat ff_lvf_demuxer;
+AVInputFormat ff_lxf_demuxer;
+AVInputFormat ff_m4v_muxer;
+AVInputFormat ff_m4v_demuxer;
+AVInputFormat ff_md5_muxer;
+AVInputFormat ff_matroska_muxer;
+AVInputFormat ff_matroska_audio_muxer;
+AVInputFormat ff_mgsts_demuxer;
+AVInputFormat ff_microdvd_muxer;
+AVInputFormat ff_microdvd_demuxer;
+AVInputFormat ff_mjpeg_muxer;
+AVInputFormat ff_mjpeg_demuxer;
+AVInputFormat ff_mlp_muxer;
+AVInputFormat ff_mlp_demuxer;
+AVInputFormat ff_mlv_demuxer;
+AVInputFormat ff_mm_demuxer;
+AVInputFormat ff_mmf_muxer;
+AVInputFormat ff_mmf_demuxer;
+AVInputFormat ff_mov_muxer;
+AVInputFormat ff_mp2_muxer;
+AVInputFormat ff_mp3_muxer;
+AVInputFormat ff_mp4_muxer;
+AVInputFormat ff_mpc_demuxer;
+AVInputFormat ff_mpc8_demuxer;
+AVInputFormat ff_mpeg1system_muxer;
+AVInputFormat ff_mpeg1vcd_muxer;
+AVInputFormat ff_mpeg1video_muxer;
+AVInputFormat ff_mpeg2dvd_muxer;
+AVInputFormat ff_mpeg2svcd_muxer;
+AVInputFormat ff_mpeg2video_muxer;
+AVInputFormat ff_mpeg2vob_muxer;
+AVInputFormat ff_mpegps_demuxer;
+AVInputFormat ff_mpegts_muxer;
+AVInputFormat ff_mpegts_demuxer;
+AVInputFormat ff_mpegtsraw_demuxer;
+AVInputFormat ff_mpegvideo_demuxer;
+AVInputFormat ff_mpjpeg_muxer;
+AVInputFormat ff_mpjpeg_demuxer;
+AVInputFormat ff_mpl2_demuxer;
+AVInputFormat ff_mpsub_demuxer;
+AVInputFormat ff_msf_demuxer;
+AVInputFormat ff_msnwc_tcp_demuxer;
+AVInputFormat ff_mtaf_demuxer;
+AVInputFormat ff_mtv_demuxer;
+AVInputFormat ff_musx_demuxer;
+AVInputFormat ff_mv_demuxer;
+AVInputFormat ff_mvi_demuxer;
+AVInputFormat ff_mxf_muxer;
+AVInputFormat ff_mxf_demuxer;
+AVInputFormat ff_mxf_d10_muxer;
+AVInputFormat ff_mxf_opatom_muxer;
+AVInputFormat ff_mxg_demuxer;
+AVInputFormat ff_nc_demuxer;
+AVInputFormat ff_nistsphere_demuxer;
+AVInputFormat ff_nsv_demuxer;
+AVInputFormat ff_null_muxer;
+AVInputFormat ff_nut_muxer;
+AVInputFormat ff_nut_demuxer;
+AVInputFormat ff_nuv_demuxer;
+AVInputFormat ff_oga_muxer;
+AVInputFormat ff_ogg_muxer;
+AVInputFormat ff_ogv_muxer;
+AVInputFormat ff_oma_muxer;
+AVInputFormat ff_oma_demuxer;
+AVInputFormat ff_opus_muxer;
+AVInputFormat ff_paf_demuxer;
+AVInputFormat ff_pcm_alaw_muxer;
+AVInputFormat ff_pcm_alaw_demuxer;
+AVInputFormat ff_pcm_mulaw_muxer;
+AVInputFormat ff_pcm_mulaw_demuxer;
+AVInputFormat ff_pcm_f64be_muxer;
+AVInputFormat ff_pcm_f64be_demuxer;
+AVInputFormat ff_pcm_f64le_muxer;
+AVInputFormat ff_pcm_f64le_demuxer;
+AVInputFormat ff_pcm_f32be_muxer;
+AVInputFormat ff_pcm_f32be_demuxer;
+AVInputFormat ff_pcm_f32le_muxer;
+AVInputFormat ff_pcm_f32le_demuxer;
+AVInputFormat ff_pcm_s32be_muxer;
+AVInputFormat ff_pcm_s32be_demuxer;
+AVInputFormat ff_pcm_s32le_muxer;
+AVInputFormat ff_pcm_s32le_demuxer;
+AVInputFormat ff_pcm_s24be_muxer;
+AVInputFormat ff_pcm_s24be_demuxer;
+AVInputFormat ff_pcm_s24le_muxer;
+AVInputFormat ff_pcm_s24le_demuxer;
+AVInputFormat ff_pcm_s16be_muxer;
+AVInputFormat ff_pcm_s16be_demuxer;
+AVInputFormat ff_pcm_s16le_muxer;
+AVInputFormat ff_pcm_s16le_demuxer;
+AVInputFormat ff_pcm_s8_muxer;
+AVInputFormat ff_pcm_s8_demuxer;
+AVInputFormat ff_pcm_u32be_muxer;
+AVInputFormat ff_pcm_u32be_demuxer;
+AVInputFormat ff_pcm_u32le_muxer;
+AVInputFormat ff_pcm_u32le_demuxer;
+AVInputFormat ff_pcm_u24be_muxer;
+AVInputFormat ff_pcm_u24be_demuxer;
+AVInputFormat ff_pcm_u24le_muxer;
+AVInputFormat ff_pcm_u24le_demuxer;
+AVInputFormat ff_pcm_u16be_muxer;
+AVInputFormat ff_pcm_u16be_demuxer;
+AVInputFormat ff_pcm_u16le_muxer;
+AVInputFormat ff_pcm_u16le_demuxer;
+AVInputFormat ff_pcm_u8_muxer;
+AVInputFormat ff_pcm_u8_demuxer;
+AVInputFormat ff_pjs_demuxer;
+AVInputFormat ff_pmp_demuxer;
+AVInputFormat ff_psp_muxer;
+AVInputFormat ff_pva_demuxer;
+AVInputFormat ff_pvf_demuxer;
+AVInputFormat ff_qcp_demuxer;
+AVInputFormat ff_r3d_demuxer;
+AVInputFormat ff_rawvideo_muxer;
+AVInputFormat ff_rawvideo_demuxer;
+AVInputFormat ff_realtext_demuxer;
+AVInputFormat ff_redspark_demuxer;
+AVInputFormat ff_rl2_demuxer;
+AVInputFormat ff_rm_muxer;
+AVInputFormat ff_rm_demuxer;
+AVInputFormat ff_roq_muxer;
+AVInputFormat ff_roq_demuxer;
+AVInputFormat ff_rpl_demuxer;
+AVInputFormat ff_rsd_demuxer;
+AVInputFormat ff_rso_muxer;
+AVInputFormat ff_rso_demuxer;
+AVInputFormat ff_rtp_muxer;
+AVInputFormat ff_rtp_demuxer;
+AVInputFormat ff_rtp_mpegts_muxer;
+AVInputFormat ff_rtsp_muxer;
+AVInputFormat ff_rtsp_demuxer;
+AVInputFormat ff_sami_demuxer;
+AVInputFormat ff_sap_muxer;
+AVInputFormat ff_sap_demuxer;
+AVInputFormat ff_sbg_demuxer;
+AVInputFormat ff_sdp_demuxer;
+AVInputFormat ff_sdr2_demuxer;
+AVInputFormat ff_segafilm_demuxer;
+AVInputFormat ff_segment_muxer;
+AVInputFormat ff_stream_segment_muxer;
+AVInputFormat ff_shorten_demuxer;
+AVInputFormat ff_siff_demuxer;
+AVInputFormat ff_singlejpeg_muxer;
+AVInputFormat ff_sln_demuxer;
+AVInputFormat ff_smacker_demuxer;
+AVInputFormat ff_smjpeg_muxer;
+AVInputFormat ff_smjpeg_demuxer;
+AVInputFormat ff_smoothstreaming_muxer;
+AVInputFormat ff_smush_demuxer;
+AVInputFormat ff_sol_demuxer;
+AVInputFormat ff_sox_muxer;
+AVInputFormat ff_sox_demuxer;
+AVInputFormat ff_spx_muxer;
+AVInputFormat ff_spdif_muxer;
+AVInputFormat ff_spdif_demuxer;
+AVInputFormat ff_srt_muxer;
+AVInputFormat ff_srt_demuxer;
+AVInputFormat ff_str_demuxer;
+AVInputFormat ff_stl_demuxer;
+AVInputFormat ff_subviewer1_demuxer;
+AVInputFormat ff_subviewer_demuxer;
+AVInputFormat ff_sup_demuxer;
+AVInputFormat ff_svag_demuxer;
+AVInputFormat ff_swf_muxer;
+AVInputFormat ff_swf_demuxer;
+AVInputFormat ff_tak_demuxer;
+AVInputFormat ff_tee_muxer;
+AVInputFormat ff_tedcaptions_demuxer;
+AVInputFormat ff_tg2_muxer;
+AVInputFormat ff_tgp_muxer;
+AVInputFormat ff_thp_demuxer;
+AVInputFormat ff_threedostr_demuxer;
+AVInputFormat ff_tiertexseq_demuxer;
+AVInputFormat ff_mkvtimestamp_v2_muxer;
+AVInputFormat ff_tmv_demuxer;
+AVInputFormat ff_truehd_muxer;
+AVInputFormat ff_truehd_demuxer;
+AVInputFormat ff_tta_muxer;
+AVInputFormat ff_tta_demuxer;
+AVInputFormat ff_txd_demuxer;
+AVInputFormat ff_tty_demuxer;
+AVInputFormat ff_uncodedframecrc_muxer;
+AVInputFormat ff_v210_demuxer;
+AVInputFormat ff_v210x_demuxer;
+AVInputFormat ff_vag_demuxer;
+AVInputFormat ff_vc1_muxer;
+AVInputFormat ff_vc1_demuxer;
+AVInputFormat ff_vc1t_muxer;
+AVInputFormat ff_vc1t_demuxer;
+AVInputFormat ff_vivo_demuxer;
+AVInputFormat ff_vmd_demuxer;
+AVInputFormat ff_vobsub_demuxer;
+AVInputFormat ff_voc_muxer;
+AVInputFormat ff_voc_demuxer;
+AVInputFormat ff_vpk_demuxer;
+AVInputFormat ff_vplayer_demuxer;
+AVInputFormat ff_vqf_demuxer;
+AVInputFormat ff_w64_muxer;
+AVInputFormat ff_w64_demuxer;
+AVInputFormat ff_wav_muxer;
+AVInputFormat ff_wc3_demuxer;
+AVInputFormat ff_webm_muxer;
+AVInputFormat ff_webm_dash_manifest_muxer;
+AVInputFormat ff_webm_chunk_muxer;
+AVInputFormat ff_webp_muxer;
+AVInputFormat ff_webvtt_muxer;
+AVInputFormat ff_webvtt_demuxer;
+AVInputFormat ff_wsaud_demuxer;
+AVInputFormat ff_wsd_demuxer;
+AVInputFormat ff_wsvqa_demuxer;
+AVInputFormat ff_wtv_muxer;
+AVInputFormat ff_wtv_demuxer;
+AVInputFormat ff_wve_demuxer;
+AVInputFormat ff_wv_muxer;
+AVInputFormat ff_wv_demuxer;
+AVInputFormat ff_xa_demuxer;
+AVInputFormat ff_xbin_demuxer;
+AVInputFormat ff_xmv_demuxer;
+AVInputFormat ff_xvag_demuxer;
+AVInputFormat ff_xwma_demuxer;
+AVInputFormat ff_yop_demuxer;
+AVInputFormat ff_yuv4mpegpipe_muxer;
+AVInputFormat ff_yuv4mpegpipe_demuxer;
+AVInputFormat ff_image_bmp_pipe_demuxer;
+AVInputFormat ff_image_dds_pipe_demuxer;
+AVInputFormat ff_image_dpx_pipe_demuxer;
+AVInputFormat ff_image_exr_pipe_demuxer;
+AVInputFormat ff_image_j2k_pipe_demuxer;
+AVInputFormat ff_image_jpeg_pipe_demuxer;
+AVInputFormat ff_image_jpegls_pipe_demuxer;
+AVInputFormat ff_image_pam_pipe_demuxer;
+AVInputFormat ff_image_pbm_pipe_demuxer;
+AVInputFormat ff_image_pcx_pipe_demuxer;
+AVInputFormat ff_image_pgmyuv_pipe_demuxer;
+AVInputFormat ff_image_pgm_pipe_demuxer;
+AVInputFormat ff_image_pictor_pipe_demuxer;
+AVInputFormat ff_image_png_pipe_demuxer;
+AVInputFormat ff_image_ppm_pipe_demuxer;
+AVInputFormat ff_image_qdraw_pipe_demuxer;
+AVInputFormat ff_image_sgi_pipe_demuxer;
+AVInputFormat ff_image_sunrast_pipe_demuxer;
+AVInputFormat ff_image_tiff_pipe_demuxer;
+AVInputFormat ff_image_webp_pipe_demuxer;
+AVInputFormat ff_chromaprint_muxer;
+AVInputFormat ff_libgme_demuxer;
+AVInputFormat ff_libmodplug_demuxer;
+AVInputFormat ff_libnut_muxer;
+AVInputFormat ff_libnut_demuxer;
+AVInputFormat ff_libopenmpt_demuxer;
+
+AVHWAccel ff_h263_cuvid_hwaccel;
+AVHWAccel ff_h263_vaapi_hwaccel;
+AVHWAccel ff_h263_videotoolbox_hwaccel;
+AVHWAccel ff_h264_cuvid_hwaccel;
+AVHWAccel ff_h264_d3d11va_hwaccel;
+AVHWAccel ff_h264_dxva2_hwaccel;
+AVHWAccel ff_h264_mediacodec_hwaccel;
+AVHWAccel ff_h264_mmal_hwaccel;
+AVHWAccel ff_h264_qsv_hwaccel;
+AVHWAccel ff_h264_vaapi_hwaccel;
+AVHWAccel ff_h264_vda_hwaccel;
+AVHWAccel ff_h264_vda_old_hwaccel;
+AVHWAccel ff_h264_vdpau_hwaccel;
+AVHWAccel ff_h264_videotoolbox_hwaccel;
+AVHWAccel ff_hevc_cuvid_hwaccel;
+AVHWAccel ff_hevc_d3d11va_hwaccel;
+AVHWAccel ff_hevc_dxva2_hwaccel;
+AVHWAccel ff_hevc_mediacodec_hwaccel;
+AVHWAccel ff_hevc_qsv_hwaccel;
+AVHWAccel ff_hevc_vaapi_hwaccel;
+AVHWAccel ff_hevc_vdpau_hwaccel;
+AVHWAccel ff_mjpeg_cuvid_hwaccel;
+AVHWAccel ff_mpeg1_cuvid_hwaccel;
+AVHWAccel ff_mpeg1_xvmc_hwaccel;
+AVHWAccel ff_mpeg1_vdpau_hwaccel;
+AVHWAccel ff_mpeg1_videotoolbox_hwaccel;
+AVHWAccel ff_mpeg2_cuvid_hwaccel;
+AVHWAccel ff_mpeg2_xvmc_hwaccel;
+AVHWAccel ff_mpeg2_d3d11va_hwaccel;
+AVHWAccel ff_mpeg2_dxva2_hwaccel;
+AVHWAccel ff_mpeg2_mmal_hwaccel;
+AVHWAccel ff_mpeg2_qsv_hwaccel;
+AVHWAccel ff_mpeg2_vaapi_hwaccel;
+AVHWAccel ff_mpeg2_vdpau_hwaccel;
+AVHWAccel ff_mpeg2_videotoolbox_hwaccel;
+AVHWAccel ff_mpeg4_cuvid_hwaccel;
+AVHWAccel ff_mpeg4_mediacodec_hwaccel;
+AVHWAccel ff_mpeg4_mmal_hwaccel;
+AVHWAccel ff_mpeg4_vaapi_hwaccel;
+AVHWAccel ff_mpeg4_vdpau_hwaccel;
+AVHWAccel ff_mpeg4_videotoolbox_hwaccel;
+AVHWAccel ff_vc1_cuvid_hwaccel;
+AVHWAccel ff_vc1_d3d11va_hwaccel;
+AVHWAccel ff_vc1_dxva2_hwaccel;
+AVHWAccel ff_vc1_vaapi_hwaccel;
+AVHWAccel ff_vc1_vdpau_hwaccel;
+AVHWAccel ff_vc1_mmal_hwaccel;
+AVHWAccel ff_vc1_qsv_hwaccel;
+AVHWAccel ff_vp8_cuvid_hwaccel;
+AVHWAccel ff_vp8_mediacodec_hwaccel;
+AVHWAccel ff_vp9_cuvid_hwaccel;
+AVHWAccel ff_vp9_d3d11va_hwaccel;
+AVHWAccel ff_vp9_dxva2_hwaccel;
+AVHWAccel ff_vp9_mediacodec_hwaccel;
+AVHWAccel ff_vp9_vaapi_hwaccel;
+AVHWAccel ff_wmv3_d3d11va_hwaccel;
+AVHWAccel ff_wmv3_dxva2_hwaccel;
+AVHWAccel ff_wmv3_vaapi_hwaccel;
+AVHWAccel ff_wmv3_vdpau_hwaccel;
+
+AVCodec ff_a64multi_encoder;
+AVCodec ff_a64multi5_encoder;
+AVCodec ff_aasc_decoder;
+AVCodec ff_aic_decoder;
+AVCodec ff_alias_pix_encoder;
+AVCodec ff_alias_pix_decoder;
+AVCodec ff_amv_encoder;
+AVCodec ff_amv_decoder;
+AVCodec ff_anm_decoder;
+AVCodec ff_ansi_decoder;
+AVCodec ff_apng_encoder;
+AVCodec ff_apng_decoder;
+AVCodec ff_asv1_encoder;
+AVCodec ff_asv1_decoder;
+AVCodec ff_asv2_encoder;
+AVCodec ff_asv2_decoder;
+AVCodec ff_aura_decoder;
+AVCodec ff_aura2_decoder;
+AVCodec ff_avrp_encoder;
+AVCodec ff_avrp_decoder;
+AVCodec ff_avrn_decoder;
+AVCodec ff_avs_decoder;
+AVCodec ff_avui_encoder;
+AVCodec ff_avui_decoder;
+AVCodec ff_ayuv_encoder;
+AVCodec ff_ayuv_decoder;
+AVCodec ff_bethsoftvid_decoder;
+AVCodec ff_bfi_decoder;
+AVCodec ff_bink_decoder;
+AVCodec ff_bmp_encoder;
+AVCodec ff_bmp_decoder;
+AVCodec ff_bmv_video_decoder;
+AVCodec ff_brender_pix_decoder;
+AVCodec ff_c93_decoder;
+AVCodec ff_cavs_decoder;
+AVCodec ff_cdgraphics_decoder;
+AVCodec ff_cdxl_decoder;
+AVCodec ff_cfhd_decoder;
+AVCodec ff_cinepak_encoder;
+AVCodec ff_cinepak_decoder;
+AVCodec ff_cljr_encoder;
+AVCodec ff_cljr_decoder;
+AVCodec ff_cllc_decoder;
+AVCodec ff_comfortnoise_encoder;
+AVCodec ff_comfortnoise_decoder;
+AVCodec ff_cpia_decoder;
+AVCodec ff_cscd_decoder;
+AVCodec ff_cyuv_decoder;
+AVCodec ff_dds_decoder;
+AVCodec ff_dfa_decoder;
+AVCodec ff_dirac_decoder;
+AVCodec ff_dnxhd_encoder;
+AVCodec ff_dnxhd_decoder;
+AVCodec ff_dpx_encoder;
+AVCodec ff_dpx_decoder;
+AVCodec ff_dsicinvideo_decoder;
+AVCodec ff_dvaudio_decoder;
+AVCodec ff_dvvideo_encoder;
+AVCodec ff_dvvideo_decoder;
+AVCodec ff_dxa_decoder;
+AVCodec ff_dxtory_decoder;
+AVCodec ff_dxv_decoder;
+AVCodec ff_eacmv_decoder;
+AVCodec ff_eamad_decoder;
+AVCodec ff_eatgq_decoder;
+AVCodec ff_eatgv_decoder;
+AVCodec ff_eatqi_decoder;
+AVCodec ff_eightbps_decoder;
+AVCodec ff_eightsvx_exp_decoder;
+AVCodec ff_eightsvx_fib_decoder;
+AVCodec ff_escape124_decoder;
+AVCodec ff_escape130_decoder;
+AVCodec ff_exr_decoder;
+AVCodec ff_ffv1_encoder;
+AVCodec ff_ffv1_decoder;
+AVCodec ff_ffvhuff_encoder;
+AVCodec ff_ffvhuff_decoder;
+AVCodec ff_fic_decoder;
+AVCodec ff_flashsv_encoder;
+AVCodec ff_flashsv_decoder;
+AVCodec ff_flashsv2_encoder;
+AVCodec ff_flashsv2_decoder;
+AVCodec ff_flic_decoder;
+AVCodec ff_flv_encoder;
+AVCodec ff_flv_decoder;
+AVCodec ff_fourxm_decoder;
+AVCodec ff_fraps_decoder;
+AVCodec ff_frwu_decoder;
+AVCodec ff_g2m_decoder;
+AVCodec ff_gif_encoder;
+AVCodec ff_gif_decoder;
+AVCodec ff_h261_encoder;
+AVCodec ff_h261_decoder;
+AVCodec ff_h263_encoder;
+AVCodec ff_h263_decoder;
+AVCodec ff_h263i_decoder;
+AVCodec ff_h263p_encoder;
+AVCodec ff_h263p_decoder;
+AVCodec ff_h264_crystalhd_decoder;
+AVCodec ff_h264_mediacodec_decoder;
+AVCodec ff_h264_mmal_decoder;
+AVCodec ff_h264_qsv_decoder;
+AVCodec ff_h264_vda_decoder;
+AVCodec ff_h264_vdpau_decoder;
+AVCodec ff_hap_encoder;
+AVCodec ff_hap_decoder;
+AVCodec ff_hevc_decoder;
+AVCodec ff_hevc_qsv_decoder;
+AVCodec ff_hnm4_video_decoder;
+AVCodec ff_hq_hqa_decoder;
+AVCodec ff_hqx_decoder;
+AVCodec ff_huffyuv_encoder;
+AVCodec ff_huffyuv_decoder;
+AVCodec ff_idcin_decoder;
+AVCodec ff_iff_ilbm_decoder;
+AVCodec ff_indeo2_decoder;
+AVCodec ff_indeo3_decoder;
+AVCodec ff_indeo4_decoder;
+AVCodec ff_indeo5_decoder;
+AVCodec ff_interplay_video_decoder;
+AVCodec ff_jpeg2000_encoder;
+AVCodec ff_jpeg2000_decoder;
+AVCodec ff_jpegls_encoder;
+AVCodec ff_jpegls_decoder;
+AVCodec ff_jv_decoder;
+AVCodec ff_kgv1_decoder;
+AVCodec ff_kmvc_decoder;
+AVCodec ff_lagarith_decoder;
+AVCodec ff_ljpeg_encoder;
+AVCodec ff_loco_decoder;
+AVCodec ff_m101_decoder;
+AVCodec ff_magicyuv_decoder;
+AVCodec ff_mdec_decoder;
+AVCodec ff_mimic_decoder;
+AVCodec ff_mjpeg_encoder;
+AVCodec ff_mjpeg_decoder;
+AVCodec ff_mjpegb_decoder;
+AVCodec ff_mmvideo_decoder;
+AVCodec ff_motionpixels_decoder;
+AVCodec ff_mpeg_xvmc_decoder;
+AVCodec ff_mpeg1video_encoder;
+AVCodec ff_mpeg1video_decoder;
+AVCodec ff_mpeg2video_encoder;
+AVCodec ff_mpeg2video_decoder;
+AVCodec ff_mpeg4_encoder;
+AVCodec ff_mpeg4_decoder;
+AVCodec ff_mpeg4_crystalhd_decoder;
+AVCodec ff_mpeg4_mmal_decoder;
+AVCodec ff_mpeg4_vdpau_decoder;
+AVCodec ff_mpegvideo_decoder;
+AVCodec ff_mpeg_vdpau_decoder;
+AVCodec ff_mpeg1_vdpau_decoder;
+AVCodec ff_mpeg2_mmal_decoder;
+AVCodec ff_mpeg2_crystalhd_decoder;
+AVCodec ff_mpeg2_qsv_decoder;
+AVCodec ff_msa1_decoder;
+AVCodec ff_msmpeg4_crystalhd_decoder;
+AVCodec ff_msmpeg4v1_decoder;
+AVCodec ff_msmpeg4v2_encoder;
+AVCodec ff_msmpeg4v2_decoder;
+AVCodec ff_msmpeg4v3_encoder;
+AVCodec ff_msmpeg4v3_decoder;
+AVCodec ff_msrle_decoder;
+AVCodec ff_mss1_decoder;
+AVCodec ff_mss2_decoder;
+AVCodec ff_msvideo1_encoder;
+AVCodec ff_msvideo1_decoder;
+AVCodec ff_mszh_decoder;
+AVCodec ff_mts2_decoder;
+AVCodec ff_mvc1_decoder;
+AVCodec ff_mvc2_decoder;
+AVCodec ff_mxpeg_decoder;
+AVCodec ff_nuv_decoder;
+AVCodec ff_paf_video_decoder;
+AVCodec ff_pam_encoder;
+AVCodec ff_pam_decoder;
+AVCodec ff_pbm_encoder;
+AVCodec ff_pbm_decoder;
+AVCodec ff_pcx_encoder;
+AVCodec ff_pcx_decoder;
+AVCodec ff_pgm_encoder;
+AVCodec ff_pgm_decoder;
+AVCodec ff_pgmyuv_encoder;
+AVCodec ff_pgmyuv_decoder;
+AVCodec ff_pictor_decoder;
+AVCodec ff_png_encoder;
+AVCodec ff_png_decoder;
+AVCodec ff_ppm_encoder;
+AVCodec ff_ppm_decoder;
+AVCodec ff_prores_encoder;
+AVCodec ff_prores_decoder;
+AVCodec ff_prores_aw_encoder;
+AVCodec ff_prores_ks_encoder;
+AVCodec ff_prores_lgpl_decoder;
+AVCodec ff_ptx_decoder;
+AVCodec ff_qdraw_decoder;
+AVCodec ff_qpeg_decoder;
+AVCodec ff_qtrle_encoder;
+AVCodec ff_qtrle_decoder;
+AVCodec ff_r10k_encoder;
+AVCodec ff_r10k_decoder;
+AVCodec ff_r210_encoder;
+AVCodec ff_r210_decoder;
+AVCodec ff_rawvideo_encoder;
+AVCodec ff_rawvideo_decoder;
+AVCodec ff_rl2_decoder;
+AVCodec ff_roq_encoder;
+AVCodec ff_roq_decoder;
+AVCodec ff_rpza_decoder;
+AVCodec ff_rscc_decoder;
+AVCodec ff_rv10_encoder;
+AVCodec ff_rv10_decoder;
+AVCodec ff_rv20_encoder;
+AVCodec ff_rv20_decoder;
+AVCodec ff_rv30_decoder;
+AVCodec ff_rv40_decoder;
+AVCodec ff_s302m_encoder;
+AVCodec ff_s302m_decoder;
+AVCodec ff_sanm_decoder;
+AVCodec ff_screenpresso_decoder;
+AVCodec ff_sdx2_dpcm_decoder;
+AVCodec ff_sgi_encoder;
+AVCodec ff_sgi_decoder;
+AVCodec ff_sgirle_decoder;
+AVCodec ff_sheervideo_decoder;
+AVCodec ff_smacker_decoder;
+AVCodec ff_smc_decoder;
+AVCodec ff_smvjpeg_decoder;
+AVCodec ff_snow_encoder;
+AVCodec ff_snow_decoder;
+AVCodec ff_sp5x_decoder;
+AVCodec ff_sunrast_encoder;
+AVCodec ff_sunrast_decoder;
+AVCodec ff_svq1_encoder;
+AVCodec ff_svq1_decoder;
+AVCodec ff_svq3_decoder;
+AVCodec ff_targa_encoder;
+AVCodec ff_targa_decoder;
+AVCodec ff_targa_y216_decoder;
+AVCodec ff_tdsc_decoder;
+AVCodec ff_thp_decoder;
+AVCodec ff_tiertexseqvideo_decoder;
+AVCodec ff_tiff_encoder;
+AVCodec ff_tiff_decoder;
+AVCodec ff_tmv_decoder;
+AVCodec ff_truemotion1_decoder;
+AVCodec ff_truemotion2_decoder;
+AVCodec ff_truemotion2rt_decoder;
+AVCodec ff_tscc_decoder;
+AVCodec ff_tscc2_decoder;
+AVCodec ff_txd_decoder;
+AVCodec ff_ulti_decoder;
+AVCodec ff_utvideo_encoder;
+AVCodec ff_utvideo_decoder;
+AVCodec ff_v210_encoder;
+AVCodec ff_v210_decoder;
+AVCodec ff_v210x_decoder;
+AVCodec ff_v308_encoder;
+AVCodec ff_v308_decoder;
+AVCodec ff_v408_encoder;
+AVCodec ff_v408_decoder;
+AVCodec ff_v410_encoder;
+AVCodec ff_v410_decoder;
+AVCodec ff_vb_decoder;
+AVCodec ff_vble_decoder;
+AVCodec ff_vc1_decoder;
+AVCodec ff_vc1_crystalhd_decoder;
+AVCodec ff_vc1_vdpau_decoder;
+AVCodec ff_vc1image_decoder;
+AVCodec ff_vc1_mmal_decoder;
+AVCodec ff_vc1_qsv_decoder;
+AVCodec ff_vc2_encoder;
+AVCodec ff_vcr1_decoder;
+AVCodec ff_vmdvideo_decoder;
+AVCodec ff_vmnc_decoder;
+AVCodec ff_vp5_decoder;
+AVCodec ff_vp6_decoder;
+AVCodec ff_vp6a_decoder;
+AVCodec ff_vp6f_decoder;
+AVCodec ff_vp7_decoder;
+AVCodec ff_vp9_decoder;
+AVCodec ff_vqa_decoder;
+AVCodec ff_webp_decoder;
+AVCodec ff_wrapped_avframe_encoder;
+AVCodec ff_wmv1_encoder;
+AVCodec ff_wmv1_decoder;
+AVCodec ff_wmv2_encoder;
+AVCodec ff_wmv2_decoder;
+AVCodec ff_wmv3_decoder;
+AVCodec ff_wmv3_crystalhd_decoder;
+AVCodec ff_wmv3_vdpau_decoder;
+AVCodec ff_wmv3image_decoder;
+AVCodec ff_wnv1_decoder;
+AVCodec ff_xan_wc3_decoder;
+AVCodec ff_xan_wc4_decoder;
+AVCodec ff_xbm_encoder;
+AVCodec ff_xbm_decoder;
+AVCodec ff_xface_encoder;
+AVCodec ff_xface_decoder;
+AVCodec ff_xl_decoder;
+AVCodec ff_xwd_encoder;
+AVCodec ff_xwd_decoder;
+AVCodec ff_y41p_encoder;
+AVCodec ff_y41p_decoder;
+AVCodec ff_ylc_decoder;
+AVCodec ff_yop_decoder;
+AVCodec ff_yuv4_encoder;
+AVCodec ff_yuv4_decoder;
+AVCodec ff_zero12v_decoder;
+AVCodec ff_zerocodec_decoder;
+AVCodec ff_zlib_encoder;
+AVCodec ff_zlib_decoder;
+AVCodec ff_zmbv_encoder;
+AVCodec ff_zmbv_decoder;
+AVCodec ff_aac_encoder;
+AVCodec ff_aac_fixed_decoder;
+AVCodec ff_ac3_encoder;
+AVCodec ff_ac3_decoder;
+AVCodec ff_ac3_fixed_encoder;
+AVCodec ff_ac3_fixed_decoder;
+AVCodec ff_alac_encoder;
+AVCodec ff_alac_decoder;
+AVCodec ff_als_decoder;
+AVCodec ff_amrnb_decoder;
+AVCodec ff_amrwb_decoder;
+AVCodec ff_ape_decoder;
+AVCodec ff_atrac1_decoder;
+AVCodec ff_atrac3_decoder;
+AVCodec ff_atrac3p_decoder;
+AVCodec ff_binkaudio_dct_decoder;
+AVCodec ff_binkaudio_rdft_decoder;
+AVCodec ff_bmv_audio_decoder;
+AVCodec ff_cook_decoder;
+AVCodec ff_dca_encoder;
+AVCodec ff_dca_decoder;
+AVCodec ff_dsd_lsbf_decoder;
+AVCodec ff_dsd_msbf_decoder;
+AVCodec ff_dsd_lsbf_planar_decoder;
+AVCodec ff_dsd_msbf_planar_decoder;
+AVCodec ff_dsicinaudio_decoder;
+AVCodec ff_dss_sp_decoder;
+AVCodec ff_dst_decoder;
+AVCodec ff_eac3_encoder;
+AVCodec ff_eac3_decoder;
+AVCodec ff_evrc_decoder;
+AVCodec ff_ffwavesynth_decoder;
+AVCodec ff_flac_encoder;
+AVCodec ff_g723_1_encoder;
+AVCodec ff_g723_1_decoder;
+AVCodec ff_g729_decoder;
+AVCodec ff_gsm_decoder;
+AVCodec ff_gsm_ms_decoder;
+AVCodec ff_iac_decoder;
+AVCodec ff_imc_decoder;
+AVCodec ff_interplay_acm_decoder;
+AVCodec ff_mace3_decoder;
+AVCodec ff_mace6_decoder;
+AVCodec ff_metasound_decoder;
+AVCodec ff_mlp_encoder;
+AVCodec ff_mlp_decoder;
+AVCodec ff_mp1_decoder;
+AVCodec ff_mp1float_decoder;
+AVCodec ff_mp2_encoder;
+AVCodec ff_mp2_decoder;
+AVCodec ff_mp2float_decoder;
+AVCodec ff_mp2fixed_encoder;
+AVCodec ff_mp3_decoder;
+AVCodec ff_mp3float_decoder;
+AVCodec ff_mp3adu_decoder;
+AVCodec ff_mp3adufloat_decoder;
+AVCodec ff_mp3on4_decoder;
+AVCodec ff_mp3on4float_decoder;
+AVCodec ff_mpc7_decoder;
+AVCodec ff_mpc8_decoder;
+AVCodec ff_nellymoser_encoder;
+AVCodec ff_nellymoser_decoder;
+AVCodec ff_on2avc_decoder;
+AVCodec ff_opus_decoder;
+AVCodec ff_paf_audio_decoder;
+AVCodec ff_qcelp_decoder;
+AVCodec ff_qdm2_decoder;
+AVCodec ff_ra_144_encoder;
+AVCodec ff_ra_144_decoder;
+AVCodec ff_ra_288_decoder;
+AVCodec ff_ralf_decoder;
+AVCodec ff_shorten_decoder;
+AVCodec ff_sipr_decoder;
+AVCodec ff_smackaud_decoder;
+AVCodec ff_sonic_encoder;
+AVCodec ff_sonic_decoder;
+AVCodec ff_sonic_ls_encoder;
+AVCodec ff_tak_decoder;
+AVCodec ff_truehd_encoder;
+AVCodec ff_truehd_decoder;
+AVCodec ff_truespeech_decoder;
+AVCodec ff_tta_encoder;
+AVCodec ff_tta_decoder;
+AVCodec ff_twinvq_decoder;
+AVCodec ff_vmdaudio_decoder;
+AVCodec ff_vorbis_encoder;
+AVCodec ff_wavpack_encoder;
+AVCodec ff_wavpack_decoder;
+AVCodec ff_wmalossless_decoder;
+AVCodec ff_wmapro_decoder;
+AVCodec ff_wmav1_encoder;
+AVCodec ff_wmav1_decoder;
+AVCodec ff_wmav2_encoder;
+AVCodec ff_wmav2_decoder;
+AVCodec ff_wmavoice_decoder;
+AVCodec ff_ws_snd1_decoder;
+AVCodec ff_xma1_decoder;
+AVCodec ff_xma2_decoder;
+AVCodec ff_pcm_alaw_encoder;
+AVCodec ff_pcm_bluray_decoder;
+AVCodec ff_pcm_dvd_decoder;
+AVCodec ff_pcm_f32be_encoder;
+AVCodec ff_pcm_f32be_decoder;
+AVCodec ff_pcm_f32le_encoder;
+AVCodec ff_pcm_f64be_encoder;
+AVCodec ff_pcm_f64be_decoder;
+AVCodec ff_pcm_f64le_encoder;
+AVCodec ff_pcm_f64le_decoder;
+AVCodec ff_pcm_lxf_decoder;
+AVCodec ff_pcm_mulaw_encoder;
+AVCodec ff_pcm_s8_encoder;
+AVCodec ff_pcm_s8_decoder;
+AVCodec ff_pcm_s8_planar_encoder;
+AVCodec ff_pcm_s8_planar_decoder;
+AVCodec ff_pcm_s16be_encoder;
+AVCodec ff_pcm_s16be_planar_encoder;
+AVCodec ff_pcm_s16be_planar_decoder;
+AVCodec ff_pcm_s16le_encoder;
+AVCodec ff_pcm_s16le_planar_encoder;
+AVCodec ff_pcm_s16le_planar_decoder;
+AVCodec ff_pcm_s24be_encoder;
+AVCodec ff_pcm_s24daud_encoder;
+AVCodec ff_pcm_s24daud_decoder;
+AVCodec ff_pcm_s24le_encoder;
+AVCodec ff_pcm_s24le_planar_encoder;
+AVCodec ff_pcm_s24le_planar_decoder;
+AVCodec ff_pcm_s32be_encoder;
+AVCodec ff_pcm_s32be_decoder;
+AVCodec ff_pcm_s32le_encoder;
+AVCodec ff_pcm_s32le_planar_encoder;
+AVCodec ff_pcm_s32le_planar_decoder;
+AVCodec ff_pcm_s64be_encoder;
+AVCodec ff_pcm_s64be_decoder;
+AVCodec ff_pcm_s64le_encoder;
+AVCodec ff_pcm_s64le_decoder;
+AVCodec ff_pcm_u8_encoder;
+AVCodec ff_pcm_u16be_encoder;
+AVCodec ff_pcm_u16be_decoder;
+AVCodec ff_pcm_u16le_encoder;
+AVCodec ff_pcm_u16le_decoder;
+AVCodec ff_pcm_u24be_encoder;
+AVCodec ff_pcm_u24be_decoder;
+AVCodec ff_pcm_u24le_encoder;
+AVCodec ff_pcm_u24le_decoder;
+AVCodec ff_pcm_u32be_encoder;
+AVCodec ff_pcm_u32be_decoder;
+AVCodec ff_pcm_u32le_encoder;
+AVCodec ff_pcm_u32le_decoder;
+AVCodec ff_pcm_zork_decoder;
+AVCodec ff_interplay_dpcm_decoder;
+AVCodec ff_roq_dpcm_encoder;
+AVCodec ff_roq_dpcm_decoder;
+AVCodec ff_sol_dpcm_decoder;
+AVCodec ff_xan_dpcm_decoder;
+AVCodec ff_adpcm_4xm_decoder;
+AVCodec ff_adpcm_adx_encoder;
+AVCodec ff_adpcm_adx_decoder;
+AVCodec ff_adpcm_afc_decoder;
+AVCodec ff_adpcm_aica_decoder;
+AVCodec ff_adpcm_ct_decoder;
+AVCodec ff_adpcm_dtk_decoder;
+AVCodec ff_adpcm_ea_decoder;
+AVCodec ff_adpcm_ea_maxis_xa_decoder;
+AVCodec ff_adpcm_ea_r1_decoder;
+AVCodec ff_adpcm_ea_r2_decoder;
+AVCodec ff_adpcm_ea_r3_decoder;
+AVCodec ff_adpcm_ea_xas_decoder;
+AVCodec ff_adpcm_g722_encoder;
+AVCodec ff_adpcm_g722_decoder;
+AVCodec ff_adpcm_g726_encoder;
+AVCodec ff_adpcm_g726_decoder;
+AVCodec ff_adpcm_g726le_decoder;
+AVCodec ff_adpcm_ima_amv_decoder;
+AVCodec ff_adpcm_ima_apc_decoder;
+AVCodec ff_adpcm_ima_dat4_decoder;
+AVCodec ff_adpcm_ima_dk3_decoder;
+AVCodec ff_adpcm_ima_dk4_decoder;
+AVCodec ff_adpcm_ima_ea_eacs_decoder;
+AVCodec ff_adpcm_ima_ea_sead_decoder;
+AVCodec ff_adpcm_ima_iss_decoder;
+AVCodec ff_adpcm_ima_oki_decoder;
+AVCodec ff_adpcm_ima_qt_encoder;
+AVCodec ff_adpcm_ima_qt_decoder;
+AVCodec ff_adpcm_ima_rad_decoder;
+AVCodec ff_adpcm_ima_smjpeg_decoder;
+AVCodec ff_adpcm_ima_wav_encoder;
+AVCodec ff_adpcm_ima_wav_decoder;
+AVCodec ff_adpcm_ima_ws_decoder;
+AVCodec ff_adpcm_ms_encoder;
+AVCodec ff_adpcm_ms_decoder;
+AVCodec ff_adpcm_mtaf_decoder;
+AVCodec ff_adpcm_psx_decoder;
+AVCodec ff_adpcm_sbpro_2_decoder;
+AVCodec ff_adpcm_sbpro_3_decoder;
+AVCodec ff_adpcm_sbpro_4_decoder;
+AVCodec ff_adpcm_swf_encoder;
+AVCodec ff_adpcm_swf_decoder;
+AVCodec ff_adpcm_thp_decoder;
+AVCodec ff_adpcm_thp_le_decoder;
+AVCodec ff_adpcm_vima_decoder;
+AVCodec ff_adpcm_xa_decoder;
+AVCodec ff_adpcm_yamaha_encoder;
+AVCodec ff_adpcm_yamaha_decoder;
+AVCodec ff_ssa_encoder;
+AVCodec ff_ssa_decoder;
+AVCodec ff_ass_encoder;
+AVCodec ff_ass_decoder;
+AVCodec ff_ccaption_decoder;
+AVCodec ff_dvbsub_encoder;
+AVCodec ff_dvbsub_decoder;
+AVCodec ff_dvdsub_encoder;
+AVCodec ff_dvdsub_decoder;
+AVCodec ff_jacosub_decoder;
+AVCodec ff_microdvd_decoder;
+AVCodec ff_movtext_encoder;
+AVCodec ff_movtext_decoder;
+AVCodec ff_mpl2_decoder;
+AVCodec ff_pgssub_decoder;
+AVCodec ff_pjs_decoder;
+AVCodec ff_realtext_decoder;
+AVCodec ff_sami_decoder;
+AVCodec ff_srt_encoder;
+AVCodec ff_srt_decoder;
+AVCodec ff_stl_decoder;
+AVCodec ff_subrip_encoder;
+AVCodec ff_subrip_decoder;
+AVCodec ff_subviewer_decoder;
+AVCodec ff_subviewer1_decoder;
+AVCodec ff_text_encoder;
+AVCodec ff_text_decoder;
+AVCodec ff_vplayer_decoder;
+AVCodec ff_webvtt_encoder;
+AVCodec ff_webvtt_decoder;
+AVCodec ff_xsub_encoder;
+AVCodec ff_xsub_decoder;
+AVCodec ff_aac_at_encoder;
+AVCodec ff_aac_at_decoder;
+AVCodec ff_ac3_at_decoder;
+AVCodec ff_adpcm_ima_qt_at_decoder;
+AVCodec ff_alac_at_encoder;
+AVCodec ff_alac_at_decoder;
+AVCodec ff_amr_nb_at_decoder;
+AVCodec ff_eac3_at_decoder;
+AVCodec ff_gsm_ms_at_decoder;
+AVCodec ff_ilbc_at_encoder;
+AVCodec ff_ilbc_at_decoder;
+AVCodec ff_mp1_at_decoder;
+AVCodec ff_mp2_at_decoder;
+AVCodec ff_mp3_at_decoder;
+AVCodec ff_pcm_alaw_at_encoder;
+AVCodec ff_pcm_alaw_at_decoder;
+AVCodec ff_pcm_mulaw_at_encoder;
+AVCodec ff_pcm_mulaw_at_decoder;
+AVCodec ff_qdmc_at_decoder;
+AVCodec ff_qdm2_at_decoder;
+AVCodec ff_libcelt_decoder;
+AVCodec ff_libfdk_aac_encoder;
+AVCodec ff_libfdk_aac_decoder;
+AVCodec ff_libgsm_encoder;
+AVCodec ff_libgsm_decoder;
+AVCodec ff_libgsm_ms_encoder;
+AVCodec ff_libgsm_ms_decoder;
+AVCodec ff_libilbc_encoder;
+AVCodec ff_libilbc_decoder;
+AVCodec ff_libmp3lame_encoder;
+AVCodec ff_libopencore_amrnb_encoder;
+AVCodec ff_libopencore_amrnb_decoder;
+AVCodec ff_libopencore_amrwb_decoder;
+AVCodec ff_libopenjpeg_encoder;
+AVCodec ff_libopenjpeg_decoder;
+AVCodec ff_libopus_encoder;
+AVCodec ff_libopus_decoder;
+AVCodec ff_libschroedinger_encoder;
+AVCodec ff_libschroedinger_decoder;
+AVCodec ff_libshine_encoder;
+AVCodec ff_libspeex_encoder;
+AVCodec ff_libspeex_decoder;
+AVCodec ff_libtheora_encoder;
+AVCodec ff_libtwolame_encoder;
+AVCodec ff_libvo_amrwbenc_encoder;
+AVCodec ff_libvorbis_encoder;
+AVCodec ff_libvorbis_decoder;
+AVCodec ff_libvpx_vp8_encoder;
+AVCodec ff_libvpx_vp8_decoder;
+AVCodec ff_libvpx_vp9_encoder;
+AVCodec ff_libvpx_vp9_decoder;
+AVCodec ff_libwavpack_encoder;
+AVCodec ff_libwebp_anim_encoder;
+AVCodec ff_libwebp_encoder;
+AVCodec ff_libx262_encoder;
+AVCodec ff_libx264_encoder;
+AVCodec ff_libx264rgb_encoder;
+AVCodec ff_libx265_encoder;
+AVCodec ff_libxavs_encoder;
+AVCodec ff_libxvid_encoder;
+AVCodec ff_libzvbi_teletext_decoder;
+AVCodec ff_bintext_decoder;
+AVCodec ff_xbin_decoder;
+AVCodec ff_idf_decoder;
+AVCodec ff_libopenh264_encoder;
+AVCodec ff_libopenh264_decoder;
+AVCodec ff_h263_cuvid_decoder;
+AVCodec ff_h264_cuvid_decoder;
+AVCodec ff_h264_nvenc_encoder;
+AVCodec ff_h264_omx_encoder;
+AVCodec ff_h264_qsv_encoder;
+AVCodec ff_h264_vaapi_encoder;
+AVCodec ff_h264_videotoolbox_encoder;
+AVCodec ff_nvenc_encoder;
+AVCodec ff_nvenc_h264_encoder;
+AVCodec ff_nvenc_hevc_encoder;
+AVCodec ff_hevc_cuvid_decoder;
+AVCodec ff_hevc_mediacodec_decoder;
+AVCodec ff_hevc_nvenc_encoder;
+AVCodec ff_hevc_qsv_encoder;
+AVCodec ff_hevc_vaapi_encoder;
+AVCodec ff_libkvazaar_encoder;
+AVCodec ff_mjpeg_cuvid_decoder;
+AVCodec ff_mjpeg_vaapi_encoder;
+AVCodec ff_mpeg1_cuvid_decoder;
+AVCodec ff_mpeg2_cuvid_decoder;
+AVCodec ff_mpeg2_qsv_encoder;
+AVCodec ff_mpeg4_cuvid_decoder;
+AVCodec ff_mpeg4_mediacodec_decoder;
+AVCodec ff_vc1_cuvid_decoder;
+AVCodec ff_vp8_cuvid_decoder;
+AVCodec ff_vp8_mediacodec_decoder;
+AVCodec ff_vp9_cuvid_decoder;
+AVCodec ff_vp9_mediacodec_decoder;
+
+
+AVCodecParser ff_aac_latm_parser;
+AVCodecParser ff_ac3_parser;
+AVCodecParser ff_adx_parser;
+AVCodecParser ff_bmp_parser;
+AVCodecParser ff_cavsvideo_parser;
+AVCodecParser ff_cook_parser;
+AVCodecParser ff_dca_parser;
+AVCodecParser ff_dirac_parser;
+AVCodecParser ff_dnxhd_parser;
+AVCodecParser ff_dpx_parser;
+AVCodecParser ff_dvaudio_parser;
+AVCodecParser ff_dvbsub_parser;
+AVCodecParser ff_dvdsub_parser;
+AVCodecParser ff_dvd_nav_parser;
+AVCodecParser ff_g729_parser;
+AVCodecParser ff_gsm_parser;
+AVCodecParser ff_h261_parser;
+AVCodecParser ff_h263_parser;
+AVCodecParser ff_hevc_parser;
+AVCodecParser ff_mjpeg_parser;
+AVCodecParser ff_mlp_parser;
+AVCodecParser ff_mpeg4video_parser;
+AVCodecParser ff_mpegvideo_parser;
+AVCodecParser ff_png_parser;
+AVCodecParser ff_pnm_parser;
+AVCodecParser ff_rv30_parser;
+AVCodecParser ff_rv40_parser;
+AVCodecParser ff_tak_parser;
+AVCodecParser ff_vc1_parser;
+AVCodecParser ff_vp9_parser;
+
+int ff_get_cpu_flags_aarch64(void) { return 0; }
+int ff_get_cpu_flags_arm(void) { return 0; }
+int ff_get_cpu_flags_ppc(void) { return 0; }
+
+void ff_vdpau_add_data_chunk(uint8_t *data, const uint8_t *buf,
+                             int buf_size) {}
+void ff_vdpau_h264_picture_start(H264Context *h) {}
+void ff_print_debug_info2(AVCodecContext *avctx, AVFrame *pict, uint8_t *mbskip_table,
+                         uint32_t *mbtype_table, int8_t *qscale_table, int16_t (*motion_val[2])[2],
+                         int *low_delay,
+                         int mb_width, int mb_height, int mb_stride, int quarter_sample) {}
+
+void ff_vp7dsp_init(VP8DSPContext *c) {}
+
+void ff_aacdec_init_mips(AACContext *c) {}
+
+void ff_vdpau_h264_set_reference_frames(H264Context *h) {}
+void ff_vdpau_h264_picture_complete(H264Context *h) {}
+void ff_er_frame_start(ERContext *s) {}
+void ff_er_add_slice(ERContext *s, int startx, int starty, int endx, int endy,
+                     int status) {}
+
+void ff_hpeldsp_init_aarch64(HpelDSPContext *c, int flags) {}
+void ff_hpeldsp_init_alpha(HpelDSPContext *c, int flags) {}
+void ff_hpeldsp_init_arm(HpelDSPContext *c, int flags) {}
+void ff_hpeldsp_init_ppc(HpelDSPContext *c, int flags) {}
+void ff_hpeldsp_init_mips(HpelDSPContext *c, int flags) {}
+
+void ff_videodsp_init_aarch64(VideoDSPContext *ctx, int bpc) {}
+void ff_videodsp_init_arm(VideoDSPContext *ctx, int bpc) {}
+void ff_videodsp_init_ppc(VideoDSPContext *ctx, int bpc) {}
+void ff_vp3dsp_init_arm(VP3DSPContext *c, int flags) {}
+void ff_vp3dsp_init_ppc(VP3DSPContext *c, int flags) {}
+
+void ff_h264_pred_init_aarch64(H264PredContext *h, int codec_id,
+                               const int bit_depth,
+                               const int chroma_format_idc) {}
+void ff_h264_pred_init_arm(H264PredContext *h, int codec_id,
+                           const int bit_depth, const int chroma_format_idc) {}
+void ff_h264_pred_init_mips(H264PredContext *h, int codec_id,
+                            const int bit_depth, const int chroma_format_idc) {}
+
+void ff_vp78dsp_init_arm(VP8DSPContext *c) {}
+void ff_vp78dsp_init_ppc(VP8DSPContext *c) {}
+void ff_vp8dsp_init_arm(VP8DSPContext *c) {}
+void ff_vp8dsp_init_mips(VP8DSPContext *c) {}
+
+void ff_imdct15_init_aarch64(IMDCT15Context *s) {}
+void ff_aacsbr_func_ptr_init_mips(AACSBRContext *c) {}
+void ff_flacdsp_init_arm(FLACDSPContext *c, enum AVSampleFormat fmt, int channels, int bps) {}
+
+void ff_vorbisdsp_init_aarch64(VorbisDSPContext *dsp) {}
+void ff_vorbisdsp_init_arm(VorbisDSPContext *dsp) {}
+void ff_vorbisdsp_init_ppc(VorbisDSPContext *dsp) {}
+
+void ff_float_dsp_init_aarch64(AVFloatDSPContext *fdsp) {}
+void ff_float_dsp_init_arm(AVFloatDSPContext *fdsp) {}
+void ff_float_dsp_init_ppc(AVFloatDSPContext *fdsp, int strict) {}
+void ff_float_dsp_init_mips(AVFloatDSPContext *fdsp) {}
+
+void ff_h264chroma_init_aarch64(H264ChromaContext *c, int bit_depth) {}
+void ff_h264chroma_init_arm(H264ChromaContext *c, int bit_depth) {}
+void ff_h264chroma_init_ppc(H264ChromaContext *c, int bit_depth) {}
+void ff_h264chroma_init_mips(H264ChromaContext *c, int bit_depth) {}
+void ff_h264dsp_init_aarch64(H264DSPContext *c, const int bit_depth,
+                             const int chroma_format_idc) {}
+void ff_h264dsp_init_arm(H264DSPContext *c, const int bit_depth,
+                         const int chroma_format_idc) {}
+void ff_h264dsp_init_ppc(H264DSPContext *c, const int bit_depth,
+                         const int chroma_format_idc) {}
+void ff_h264dsp_init_mips(H264DSPContext *c, const int bit_depth,
+                          const int chroma_format_idc) {}
+
+void ff_h264qpel_init_aarch64(H264QpelContext *c, int bit_depth) {}
+void ff_h264qpel_init_arm(H264QpelContext *c, int bit_depth) {}
+void ff_h264qpel_init_ppc(H264QpelContext *c, int bit_depth) {}
+void ff_h264qpel_init_mips(H264QpelContext *c, int bit_depth) {}
+
+void ff_fft_init_aarch64(FFTContext *s) {}
+void ff_fft_init_arm(FFTContext *s) {}
+void ff_fft_init_mips(FFTContext *s) {}
+void ff_fft_init_ppc(FFTContext *s) {}
+
+void ff_sbrdsp_init_arm(SBRDSPContext *s) {}
+void ff_sbrdsp_init_mips(SBRDSPContext *s) {}
+
+void ff_flac_decorrelate_indep8_16_sse2(uint8_t **out, int32_t **in, int channels, int len, int shift) {}
+void ff_flac_decorrelate_indep8_16_avx(uint8_t **out, int32_t **in, int channels, int len, int shift) {}
+void ff_flac_decorrelate_indep8_32_sse2(uint8_t **out, int32_t **in, int channels, int len, int shift) {}
+void ff_flac_decorrelate_indep8_32_avx(uint8_t **out, int32_t **in, int channels, int len, int shift) {}
+
+void ff_psdsp_init_arm(PSDSPContext *s) {}
+void ff_psdsp_init_mips(PSDSPContext *s) {}
+
+void ff_rdft_init_arm(RDFTContext *s) {}
+void ff_fft_fixed_init_arm(FFTContext *s) {}
+
+void ff_mpadsp_init_aarch64(MPADSPContext *s) {}
+void ff_mpadsp_init_arm(MPADSPContext *s) {}
+void ff_mpadsp_init_ppc(MPADSPContext *s) {}
+void ff_mpadsp_init_mipsfpu(MPADSPContext *s) {}
+void ff_mpadsp_init_mipsdsp(MPADSPContext *s) {}

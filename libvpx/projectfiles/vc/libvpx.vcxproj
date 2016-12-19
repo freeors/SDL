@@ -1,0 +1,672 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\libvpx\vp8\common\alloccommon.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\blockd.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\copy_c.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\debugmodes.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\dequantize.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\entropy.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\entropymode.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\entropymv.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\extend.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\filter.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\findnearmv.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\generic\systemdependent.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\idctllm.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\idct_blk.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\loopfilter_filters.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\mbpitch.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\mfqe.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\modecont.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\postproc.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\quant_common.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\reconinter.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\reconintra.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\reconintra4x4.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\rtcd.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\setupintrarecon.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\swapyv12buffer.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\treecoder.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\vp8_loopfilter.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\vp8_skin_detection.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\x86\filter_x86.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\x86\idct_blk_mmx.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\x86\idct_blk_sse2.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\x86\loopfilter_x86.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\common\x86\vp8_asm_stubs.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\decoder\dboolhuff.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\decoder\decodeframe.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\decoder\decodemv.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\decoder\detokenize.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\decoder\onyxd_if.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\decoder\threading.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\bitstream.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\boolhuff.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\dct.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\denoising.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\encodeframe.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\encodeintra.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\encodemb.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\encodemv.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\ethreading.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\firstpass.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\lookahead.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\mcomp.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\modecosts.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\onyx_if.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\pickinter.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\picklpf.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\ratectrl.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\rdopt.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\segmentation.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\temporal_filter.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\tokenize.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\treewriter.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\vp8_quantize.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\x86\denoising_sse2.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\x86\quantize_sse4.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\x86\quantize_ssse3.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\x86\vp8_enc_stubs_sse2.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\encoder\x86\vp8_quantize_sse2.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\vp8_cx_iface.c" />
+    <ClCompile Include="..\..\source\libvpx\vp8\vp8_dx_iface.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_alloccommon.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_blockd.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_common_data.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_debugmodes.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_entropy.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_entropymode.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_entropymv.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_filter.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_frame_buffers.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_idct.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_loopfilter.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_mvref_common.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_postproc.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_pred_common.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_quant_common.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_reconinter.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_reconintra.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_rtcd.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_scale.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_scan.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_seg_common.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_thread_common.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\vp9_tile_common.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\common\x86\vp9_idct_intrin_sse2.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\decoder\vp9_decodeframe.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\decoder\vp9_decodemv.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\decoder\vp9_decoder.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\decoder\vp9_detokenize.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\decoder\vp9_dsubexp.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_alt_ref_aq.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_aq_360.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_aq_complexity.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_aq_cyclicrefresh.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_aq_variance.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_bitstream.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_blockiness.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_context_tree.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_cost.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_dct.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_encodeframe.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_encodemb.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_encodemv.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_encoder.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_ethread.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_extend.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_firstpass.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_frame_scale.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_lookahead.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_mbgraph.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_mcomp.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_multi_thread.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_noise_estimate.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_picklpf.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_pickmode.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_quantize.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_ratectrl.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_rd.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_rdopt.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_resize.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_segmentation.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_skin_detection.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_speed_features.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_subexp.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_svc_layercontext.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_temporal_filter.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_tokenize.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\vp9_treewriter.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\x86\temporal_filter_sse4.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\x86\vp9_dct_intrin_sse2.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\x86\vp9_dct_ssse3.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\x86\vp9_denoiser_sse2.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\x86\vp9_diamond_search_sad_avx.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/arch:AVX</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\x86\vp9_error_avx2.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\x86\vp9_frame_scale_ssse3.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\encoder\x86\vp9_quantize_sse2.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\vp9_cx_iface.c" />
+    <ClCompile Include="..\..\source\libvpx\vp9\vp9_dx_iface.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx\src\vpx_codec.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx\src\vpx_decoder.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx\src\vpx_encoder.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx\src\vpx_image.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\add_noise.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\avg.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\bitreader.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\bitreader_buffer.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\bitwriter.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\bitwriter_buffer.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\deblock.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\fwd_txfm.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\intrapred.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\inv_txfm.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\loopfilter.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\prob.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\psnr.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\quantize.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\sad.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\skin_detection.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\subtract.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\sum_squares.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\variance.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\vpx_convolve.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\vpx_dsp_rtcd.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\avg_intrin_sse2.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\avg_pred_sse2.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\fwd_txfm_avx2.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\fwd_txfm_sse2.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\inv_txfm_sse2.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\inv_txfm_ssse3.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\loopfilter_avx2.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/arch:AVX</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\loopfilter_sse2.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)vpx_dsp\x86\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\quantize_sse2.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\sad4d_avx2.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/arch:AVX</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\sad_avx2.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/arch:AVX</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\sum_squares_sse2.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\variance_avx2.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/arch:AVX</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\variance_impl_avx2.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/arch:AVX2</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\variance_sse2.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\vpx_asm_stubs.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\vpx_subpixel_8t_intrin_avx2.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/arch:AVX</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="..\..\source\libvpx\vpx_dsp\x86\vpx_subpixel_8t_intrin_ssse3.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_mem\vpx_mem.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_scale\generic\gen_scalers.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_scale\generic\vpx_scale.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_scale\generic\yv12config.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_scale\generic\yv12extend.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_scale\vpx_scale_rtcd.c" />
+    <ClCompile Include="..\..\source\libvpx\vpx_util\vpx_thread.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\libvpx\vp8\common\alloccommon.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\blockd.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\coefupdateprobs.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\common.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\default_coef_probs.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\entropy.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\entropymode.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\entropymv.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\extend.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\filter.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\findnearmv.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\header.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\invtrans.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\loopfilter.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\modecont.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\mv.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\onyx.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\onyxc_int.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\onyxd.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\postproc.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\ppflags.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\quant_common.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\reconinter.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\reconintra.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\reconintra4x4.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\setupintrarecon.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\swapyv12buffer.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\systemdependent.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\threading.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\treecoder.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\vp8_entropymodedata.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\vp8_skin_detection.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\common\x86\filter_x86.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\decoder\dboolhuff.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\decoder\decodemv.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\decoder\decoderthreading.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\decoder\detokenize.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\decoder\onyxd_int.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\decoder\treereader.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\bitstream.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\block.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\boolhuff.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\dct_value_cost.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\dct_value_tokens.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\defaultcoefcounts.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\denoising.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\encodeframe.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\encodeintra.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\encodemb.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\encodemv.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\firstpass.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\lookahead.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\mcomp.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\modecosts.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\onyx_int.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\pickinter.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\quantize.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\ratectrl.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\rdopt.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\segmentation.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\tokenize.h" />
+    <ClInclude Include="..\..\source\libvpx\vp8\encoder\treewriter.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_alloccommon.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_blockd.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_common.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_common_data.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_entropy.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_entropymode.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_entropymv.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_enums.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_filter.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_frame_buffers.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_idct.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_loopfilter.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_mv.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_mvref_common.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_onyxc_int.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_postproc.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_ppflags.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_pred_common.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_quant_common.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_reconinter.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_reconintra.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_scale.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_scan.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_seg_common.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_thread_common.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\common\vp9_tile_common.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\decoder\vp9_decodeframe.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\decoder\vp9_decodemv.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\decoder\vp9_decoder.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\decoder\vp9_detokenize.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\decoder\vp9_dsubexp.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_alt_ref_aq.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_aq_360.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_aq_complexity.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_aq_cyclicrefresh.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_aq_variance.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_bitstream.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_block.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_context_tree.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_cost.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_encodeframe.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_encodemb.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_encodemv.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_encoder.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_ethread.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_extend.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_firstpass.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_lookahead.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_mbgraph.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_mcomp.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_multi_thread.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_noise_estimate.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_picklpf.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_pickmode.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_quantize.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_ratectrl.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_rd.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_rdopt.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_resize.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_segmentation.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_skin_detection.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_speed_features.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_subexp.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_svc_layercontext.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_temporal_filter.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_tokenize.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\encoder\vp9_treewriter.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\vp9_dx_iface.h" />
+    <ClInclude Include="..\..\source\libvpx\vp9\vp9_iface_common.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx\internal\vpx_codec_internal.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx\internal\vpx_psnr.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx\vp8.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx\vp8cx.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx\vp8dx.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx\vpx_codec.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx\vpx_decoder.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx\vpx_encoder.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx\vpx_frame_buffer.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx\vpx_image.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx\vpx_integer.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\bitreader.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\bitreader_buffer.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\bitwriter.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\bitwriter_buffer.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\fwd_txfm.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\inv_txfm.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\prob.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\quantize.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\skin_detection.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\txfm_common.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\variance.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\vpx_convolve.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\vpx_dsp_common.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\vpx_filter.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\x86\convolve.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\x86\fwd_dct32x32_impl_avx2.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\x86\fwd_dct32x32_impl_sse2.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\x86\fwd_txfm_impl_sse2.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\x86\fwd_txfm_sse2.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\x86\inv_txfm_sse2.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_dsp\x86\txfm_common_sse2.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_mem\vpx_mem.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_ports\bitops.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_ports\emmintrin_compat.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_ports\mem.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_ports\mem_ops.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_ports\mem_ops_aligned.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_ports\msvc.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_ports\system_state.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_ports\vpx_once.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_ports\vpx_timer.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_ports\x86.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_scale\vpx_scale.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_util\endian_inl.h" />
+    <ClInclude Include="..\..\source\libvpx\vpx_util\vpx_thread.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\source\libvpx\vp8\common\x86\copy_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)copy_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)copy_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp8\common\x86\copy_sse3.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)copy_sse3.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)copy_sse3.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp8\common\x86\dequantize_mmx.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)dequantize_mmx.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)dequantize_mmx.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp8\common\x86\idctllm_mmx.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)idctllm_mmx.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)idctllm_mmx.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp8\common\x86\idctllm_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)idctllm_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)idctllm_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp8\common\x86\iwalsh_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)iwalsh_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)iwalsh_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp8\common\x86\loopfilter_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)loopfilter_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)loopfilter_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp8\common\x86\mfqe_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)mfqe_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)mfqe_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp8\common\x86\recon_mmx.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)recon_mmx.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)recon_mmx.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp8\common\x86\recon_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)recon_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)recon_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp8\common\x86\subpixel_mmx.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)subpixel_mmx.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)subpixel_mmx.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp8\common\x86\subpixel_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)subpixel_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)subpixel_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp8\common\x86\subpixel_ssse3.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)subpixel_ssse3.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)subpixel_ssse3.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp8\encoder\x86\dct_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)dct_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)dct_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp8\encoder\x86\encodeopt.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)encodeopt.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)encodeopt.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp8\encoder\x86\fwalsh_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)fwalsh_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)fwalsh_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp9\encoder\x86\vp9_error_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)vp9_error_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)vp9_error_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_dsp\x86\intrapred_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)intrapred_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)intrapred_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_dsp\x86\intrapred_ssse3.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)intrapred_ssse3.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)intrapred_ssse3.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_dsp\x86\inv_wht_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)inv_wht_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)inv_wht_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_dsp\x86\sad4d_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)sad4d_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)sad4d_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_dsp\x86\sad_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)sad_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)sad_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_dsp\x86\sad_sse3.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)sad_sse3.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)sad_sse3.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_dsp\x86\sad_sse4.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)sad_sse4.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)sad_sse4.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_dsp\x86\sad_ssse3.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)sad_ssse3.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)sad_ssse3.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_dsp\x86\subpel_variance_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)subpel_variance_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)subpel_variance_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_dsp\x86\subtract_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)subtract_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)subtract_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_dsp\x86\vpx_convolve_copy_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)vpx_convolve_copy_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)vpx_convolve_copy_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_dsp\x86\vpx_subpixel_8t_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)vpx_subpixel_8t_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)vpx_subpixel_8t_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_dsp\x86\vpx_subpixel_8t_ssse3.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)vpx_subpixel_8t_ssse3.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)vpx_subpixel_8t_ssse3.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_dsp\x86\vpx_subpixel_bilinear_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)vpx_subpixel_bilinear_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)vpx_subpixel_bilinear_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_dsp\x86\vpx_subpixel_bilinear_ssse3.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)vpx_subpixel_bilinear_ssse3.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)vpx_subpixel_bilinear_ssse3.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_ports\emms.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)emms.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)emms.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_dsp\x86\add_noise_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)add_noise_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)add_noise_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vpx_dsp\x86\deblock_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)deblock_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)deblock_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp8\encoder\x86\temporal_filter_apply_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)temporal_filter_apply_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)temporal_filter_apply_sse2.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\source\libvpx\vp9\encoder\x86\vp9_dct_sse2.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -g cv8 -f win32  -I"." -I"$(SolutionDir)../../source/config/win/ia32" -I"$(SolutionDir)../../source/libvpx" "%(FullPath)" -o $(IntDir)vp9_dct_sse2.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)vp9_dct_sse2.obj</Outputs>
+    </CustomBuild>
+    <None Include="..\..\source\libvpx\vpx_ports\x86_abi_support.asm">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{56C26CEB-002F-4157-929B-7D5ECA6B5DD2}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>libvpx</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../source/libvpx;../../source/config;../../source/config/win/ia32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <DebugInformationFormat>None</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetDir)\$(TargetName).lib ..\..\..\..\linker\windows\lib\</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

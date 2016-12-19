@@ -1,0 +1,4 @@
+﻿  native_midi_common.c
+  native_midi_win32.c
+  Generating Code...
+  native_midi.vcxproj -> C:\ddksample\apps-src\SDL\SDL2_mixer-2.0.1\VisualC\\Win32\Release\native_midi.lib

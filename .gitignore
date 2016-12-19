@@ -1,0 +1,6 @@
+.DS_Store
+*.user
+*.suo
+*.sdf
+/SDL2-*/VisualC/Win32/
+

@@ -1,0 +1,4 @@
+﻿  timidity.c
+c:\ddksample\apps-src\sdl\sdl2_mixer-2.0.1\timidity\ctrlmode.h(12): warning C4005: 'RC_NONE': macro redefinition
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\um\wingdi.h(2127): note: see previous definition of 'RC_NONE'
+  timidity.vcxproj -> C:\ddksample\apps-src\SDL\SDL2_mixer-2.0.1\VisualC\\Win32\Debug\timidity.lib

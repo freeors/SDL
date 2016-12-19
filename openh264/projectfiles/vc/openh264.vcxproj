@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A298C619-775B-4523-A148-A9BE62681DBE}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>openh264</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPENH264_EXPORTS;X86_ASM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../codec/api/svc;../../codec/common/inc;../../codec/common/src;../../codec/processing/interface;../../codec/processing/src/common;../../codec/encoder/core/inc;../../codec/encoder/plus/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ModuleDefinitionFile>../../openh264.def</ModuleDefinitionFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetDir)$(TargetName).lib ..\..\..\..\linker\windows\lib\
+copy $(TargetDir)$(TargetName).dll ..\..\..\..\linker\windows\dll\</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;OPENH264_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OPENH264_EXPORTS;X86_ASM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../codec/api/svc;../../codec/common/inc;../../codec/common/src;../../codec/processing/interface;../../codec/processing/src/common;../../codec/encoder/core/inc;../../codec/encoder/plus/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ModuleDefinitionFile>../../openh264.def</ModuleDefinitionFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetDir)$(TargetName).lib ..\..\..\..\linker\windows\lib\
+copy $(TargetDir)$(TargetName).dll ..\..\..\..\linker\windows\dll\</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;OPENH264_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\codec\common\inc\copy_mb.h" />
+    <ClInclude Include="..\..\codec\common\inc\cpu.h" />
+    <ClInclude Include="..\..\codec\common\inc\cpu_core.h" />
+    <ClInclude Include="..\..\codec\common\inc\crt_util_safe_x.h" />
+    <ClInclude Include="..\..\codec\common\inc\deblocking_common.h" />
+    <ClInclude Include="..\..\codec\common\inc\expand_pic.h" />
+    <ClInclude Include="..\..\codec\common\inc\golomb_common.h" />
+    <ClInclude Include="..\..\codec\common\inc\intra_pred_common.h" />
+    <ClInclude Include="..\..\codec\common\inc\ls_defines.h" />
+    <ClInclude Include="..\..\codec\common\inc\macros.h" />
+    <ClInclude Include="..\..\codec\common\inc\mc.h" />
+    <ClInclude Include="..\..\codec\common\inc\measure_time.h" />
+    <ClInclude Include="..\..\codec\common\inc\memory_align.h" />
+    <ClInclude Include="..\..\codec\common\inc\sad_common.h" />
+    <ClInclude Include="..\..\codec\common\inc\typedefs.h" />
+    <ClInclude Include="..\..\codec\common\inc\utils.h" />
+    <ClInclude Include="..\..\codec\common\inc\version.h" />
+    <ClInclude Include="..\..\codec\common\inc\WelsCircleQueue.h" />
+    <ClInclude Include="..\..\codec\common\inc\WelsList.h" />
+    <ClInclude Include="..\..\codec\common\inc\WelsLock.h" />
+    <ClInclude Include="..\..\codec\common\inc\WelsTask.h" />
+    <ClInclude Include="..\..\codec\common\inc\WelsTaskThread.h" />
+    <ClInclude Include="..\..\codec\common\inc\WelsThread.h" />
+    <ClInclude Include="..\..\codec\common\inc\WelsThreadLib.h" />
+    <ClInclude Include="..\..\codec\common\inc\WelsThreadPool.h" />
+    <ClInclude Include="..\..\codec\common\inc\wels_common_defs.h" />
+    <ClInclude Include="..\..\codec\common\inc\wels_const_common.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\as264_common.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\au_set.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\deblocking.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\decode_mb_aux.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\dq_map.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\encoder.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\encoder_context.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\encode_mb_aux.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\extern.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\get_intra_predictor.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\mb_cache.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\md.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\mt_defs.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\mv_pred.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\nal_encap.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\parameter_sets.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\param_svc.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\paraset_strategy.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\picture.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\picture_handle.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\rc.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\ref_list_mgr_svc.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\sample.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\set_mb_syn_cabac.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\set_mb_syn_cavlc.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\slice.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\slice_multi_threading.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\stat.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\svc_base_layer_md.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\svc_encode_mb.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\svc_encode_slice.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\svc_enc_frame.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\svc_enc_golomb.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\svc_enc_macroblock.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\svc_enc_slice_segment.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\svc_mode_decision.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\svc_motion_estimate.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\svc_set_mb_syn.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\svc_set_mb_syn_cavlc.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\vlc_encoder.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\wels_common_basis.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\wels_const.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\wels_func_ptr_def.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\wels_preprocess.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\wels_task_base.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\wels_task_encoder.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\wels_task_management.h" />
+    <ClInclude Include="..\..\codec\encoder\core\inc\wels_transpose_matrix.h" />
+    <ClInclude Include="..\..\codec\encoder\plus\inc\welsEncoderExt.h" />
+    <ClInclude Include="..\..\codec\processing\interface\IWelsVP.h" />
+    <ClInclude Include="..\..\codec\processing\src\adaptivequantization\AdaptiveQuantization.h" />
+    <ClInclude Include="..\..\codec\processing\src\backgrounddetection\BackgroundDetection.h" />
+    <ClInclude Include="..\..\codec\processing\src\common\common.h" />
+    <ClInclude Include="..\..\codec\processing\src\common\memory.h" />
+    <ClInclude Include="..\..\codec\processing\src\common\resource.h" />
+    <ClInclude Include="..\..\codec\processing\src\common\typedef.h" />
+    <ClInclude Include="..\..\codec\processing\src\common\util.h" />
+    <ClInclude Include="..\..\codec\processing\src\common\WelsFrameWork.h" />
+    <ClInclude Include="..\..\codec\processing\src\complexityanalysis\ComplexityAnalysis.h" />
+    <ClInclude Include="..\..\codec\processing\src\denoise\denoise.h" />
+    <ClInclude Include="..\..\codec\processing\src\downsample\downsample.h" />
+    <ClInclude Include="..\..\codec\processing\src\imagerotate\imagerotate.h" />
+    <ClInclude Include="..\..\codec\processing\src\scenechangedetection\SceneChangeDetection.h" />
+    <ClInclude Include="..\..\codec\processing\src\scrolldetection\ScrollDetection.h" />
+    <ClInclude Include="..\..\codec\processing\src\scrolldetection\ScrollDetectionFuncs.h" />
+    <ClInclude Include="..\..\codec\processing\src\vaacalc\vaacalculation.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\codec\common\src\common_tables.cpp" />
+    <ClCompile Include="..\..\codec\common\src\copy_mb.cpp" />
+    <ClCompile Include="..\..\codec\common\src\cpu.cpp" />
+    <ClCompile Include="..\..\codec\common\src\crt_util_safe_x.cpp" />
+    <ClCompile Include="..\..\codec\common\src\deblocking_common.cpp" />
+    <ClCompile Include="..\..\codec\common\src\expand_pic.cpp" />
+    <ClCompile Include="..\..\codec\common\src\intra_pred_common.cpp" />
+    <ClCompile Include="..\..\codec\common\src\mc.cpp" />
+    <ClCompile Include="..\..\codec\common\src\memory_align.cpp" />
+    <ClCompile Include="..\..\codec\common\src\sad_common.cpp" />
+    <ClCompile Include="..\..\codec\common\src\utils.cpp" />
+    <ClCompile Include="..\..\codec\common\src\welsCodecTrace.cpp" />
+    <ClCompile Include="..\..\codec\common\src\WelsTaskThread.cpp" />
+    <ClCompile Include="..\..\codec\common\src\WelsThread.cpp" />
+    <ClCompile Include="..\..\codec\common\src\WelsThreadLib.cpp" />
+    <ClCompile Include="..\..\codec\common\src\WelsThreadPool.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\au_set.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\deblocking.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\decode_mb_aux.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\encoder.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\encoder_data_tables.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\encoder_ext.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\encode_mb_aux.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\get_intra_predictor.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\md.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\mv_pred.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\nal_encap.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\paraset_strategy.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\picture_handle.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\ratectl.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\ref_list_mgr_svc.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\sample.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\set_mb_syn_cabac.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\set_mb_syn_cavlc.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\slice_multi_threading.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\svc_base_layer_md.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\svc_encode_mb.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\svc_encode_slice.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\svc_enc_slice_segment.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\svc_mode_decision.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\svc_motion_estimate.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\svc_set_mb_syn_cabac.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\svc_set_mb_syn_cavlc.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\wels_preprocess.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\wels_task_base.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\wels_task_encoder.cpp" />
+    <ClCompile Include="..\..\codec\encoder\core\src\wels_task_management.cpp" />
+    <ClCompile Include="..\..\codec\encoder\plus\src\welsEncoderExt.cpp" />
+    <ClCompile Include="..\..\codec\processing\src\adaptivequantization\AdaptiveQuantization.cpp" />
+    <ClCompile Include="..\..\codec\processing\src\backgrounddetection\BackgroundDetection.cpp" />
+    <ClCompile Include="..\..\codec\processing\src\common\memory.cpp" />
+    <ClCompile Include="..\..\codec\processing\src\common\WelsFrameWork.cpp" />
+    <ClCompile Include="..\..\codec\processing\src\common\WelsFrameWorkEx.cpp" />
+    <ClCompile Include="..\..\codec\processing\src\complexityanalysis\ComplexityAnalysis.cpp" />
+    <ClCompile Include="..\..\codec\processing\src\denoise\denoise.cpp" />
+    <ClCompile Include="..\..\codec\processing\src\denoise\denoise_filter.cpp" />
+    <ClCompile Include="..\..\codec\processing\src\downsample\downsample.cpp" />
+    <ClCompile Include="..\..\codec\processing\src\downsample\downsamplefuncs.cpp" />
+    <ClCompile Include="..\..\codec\processing\src\imagerotate\imagerotate.cpp" />
+    <ClCompile Include="..\..\codec\processing\src\imagerotate\imagerotatefuncs.cpp" />
+    <ClCompile Include="..\..\codec\processing\src\scenechangedetection\SceneChangeDetection.cpp" />
+    <ClCompile Include="..\..\codec\processing\src\scrolldetection\ScrollDetection.cpp" />
+    <ClCompile Include="..\..\codec\processing\src\scrolldetection\ScrollDetectionFuncs.cpp" />
+    <ClCompile Include="..\..\codec\processing\src\vaacalc\vaacalcfuncs.cpp" />
+    <ClCompile Include="..\..\codec\processing\src\vaacalc\vaacalculation.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\codec\common\x86\asm_inc.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)asm_inc.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)asm_inc.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)asm_inc.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)asm_inc.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\common\x86\cpuid.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)cpuid.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)cpuid.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)cpuid.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)cpuid.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\common\x86\dct.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)common/dct.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)common/dct.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)common/dct.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)common/dct.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\common\x86\deblock.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)deblock.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)deblock.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)deblock.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)deblock.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\common\x86\expand_picture.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)expand_picture.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)expand_picture.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)expand_picture.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)expand_picture.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\common\x86\intra_pred_com.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)intra_pred_com.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)intra_pred_com.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)intra_pred_com.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)intra_pred_com.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\common\x86\mb_copy.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX  -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)mb_copy.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)mb_copy.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX  -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)mb_copy.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)mb_copy.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\common\x86\mc_chroma.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)mc_chroma.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)mc_chroma.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)mc_chroma.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)mc_chroma.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\common\x86\mc_luma.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)mc_luma.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)mc_luma.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)mc_luma.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)mc_luma.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\common\x86\satd_sad.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)satd_sad.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)satd_sad.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)satd_sad.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)satd_sad.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\common\x86\vaa.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)common/vaa.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)common/vaa.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)common/vaa.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)common/vaa.obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\codec\processing\src\x86\denoisefilter.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)denoisefilter.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)denoisefilter.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)denoisefilter.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)denoisefilter.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\processing\src\x86\downsample_bilinear.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)downsample_bilinear.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)downsample_bilinear.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)downsample_bilinear.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)downsample_bilinear.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\processing\src\x86\vaa.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)processing/vaa.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)processing/vaa.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)processing/vaa.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)processing/vaa.obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\codec\encoder\core\x86\coeff.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)coeff.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)coeff.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)coeff.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)coeff.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\encoder\core\x86\dct.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)dct.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)dct.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)dct.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)dct.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\encoder\core\x86\intra_pred.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)intra_pred.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)intra_pred.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)intra_pred.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)intra_pred.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\encoder\core\x86\matrix_transpose.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)matrix_transpose.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)matrix_transpose.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)matrix_transpose.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)matrix_transpose.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\encoder\core\x86\memzero.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)memzero.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)memzero.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)memzero.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)memzero.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\encoder\core\x86\quant.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)quant.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)quant.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)quant.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)quant.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\encoder\core\x86\sample_sc.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)sample_sc.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)sample_sc.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)sample_sc.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)sample_sc.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\codec\encoder\core\x86\score.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)score.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)score.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DX86_32 -DPREFIX -g cv8 -f win32  -I"." -I"$(SolutionDir)../../codec/common/x86" "%(FullPath)" -o $(IntDir)score.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)score.obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\openh264.def" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

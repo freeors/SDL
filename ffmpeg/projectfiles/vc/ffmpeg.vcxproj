@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4F345112-D63B-4E27-A062-ED3C55E2B28B}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ffmpeg</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;FFMPEG_EXPORTS;HAVE_AV_CONFIG_H;PIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>../..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ModuleDefinitionFile>ffmpeg.def</ModuleDefinitionFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetDir)$(TargetName).lib ..\..\..\..\linker\windows\lib\
+copy $(TargetDir)$(TargetName).dll ..\..\..\..\linker\windows\dll\</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;FFMPEG_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ModuleDefinitionFile>ffmpeg.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\libavcodec\x86\autorename_libavcodec_x86_videodsp.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)autorename_libavcodec_x86_videodsp.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)autorename_libavcodec_x86_videodsp.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\dct32.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)dct32.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)dct32.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\fft.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)fft.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)fft.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\fpel.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)fpel.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)fpel.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\h264_chromamc.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)h264_chromamc.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)h264_chromamc.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\h264_chromamc_10bit.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)h264_chromamc_10bit.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)h264_chromamc_10bit.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\h264_deblock.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)h264_deblock.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)h264_deblock.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\h264_deblock_10bit.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)h264_deblock_10bit.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)h264_deblock_10bit.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\h264_idct.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)h264_idct.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)h264_idct.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\h264_idct_10bit.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)h264_idct_10bit.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)h264_idct_10bit.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\h264_intrapred.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)h264_intrapred.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)h264_intrapred.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\h264_intrapred_10bit.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)h264_intrapred_10bit.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)h264_intrapred_10bit.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\h264_qpel_10bit.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)h264_qpel_10bit.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)h264_qpel_10bit.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\h264_qpel_8bit.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)h264_qpel_8bit.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)h264_qpel_8bit.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\h264_weight.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)h264_weight.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)h264_weight.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\h264_weight_10bit.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)h264_weight_10bit.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)h264_weight_10bit.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\hpeldsp.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)hpeldsp.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)hpeldsp.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\imdct36.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)imdct36.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)imdct36.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\qpel.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)qpel.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)qpel.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\sbrdsp.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)sbrdsp.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)sbrdsp.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\vorbisdsp.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)vorbisdsp.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)vorbisdsp.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\vp3dsp.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)vp3dsp.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)vp3dsp.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\vp8dsp.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)vp8dsp.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)vp8dsp.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\vp8dsp_loopfilter.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)vp8dsp_loopfilter.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)vp8dsp_loopfilter.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavutil\x86\cpuid.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)cpuid.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)cpuid.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavutil\x86\fixed_dsp.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)fixed_dsp.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)fixed_dsp.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavutil\x86\float_dsp.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)float_dsp.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)float_dsp.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavutil\x86\lls.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)lls.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)lls.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\flacdsp.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)flacdsp.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)flacdsp.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\libavcodec\x86\aacpsdsp.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vsyasm -Xvc -DPIC -DPREFIX="_" -Pconfig.asm -g cv8 -f win32  -I"." -I"$(SolutionDir)../.." "%(FullPath)" -o $(IntDir)aacpsdsp.obj</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)aacpsdsp.obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\dummy_funcs.c" />
+    <ClCompile Include="..\..\libavcodec\aacadtsdec.c" />
+    <ClCompile Include="..\..\libavcodec\aacpsdsp_float.c" />
+    <ClCompile Include="..\..\libavcodec\aacps_float.c" />
+    <ClCompile Include="..\..\libavcodec\aacsbr.c" />
+    <ClCompile Include="..\..\libavcodec\aactab.c" />
+    <ClCompile Include="..\..\libavcodec\aac_ac3_parser.c" />
+    <ClCompile Include="..\..\libavcodec\aac_parser.c" />
+    <ClCompile Include="..\..\libavcodec\ac3tab.c" />
+    <ClCompile Include="..\..\libavcodec\allcodecs.c" />
+    <ClCompile Include="..\..\libavcodec\autorename_libavcodec_aacdec.c" />
+    <ClCompile Include="..\..\libavcodec\autorename_libavcodec_flacdec.c" />
+    <ClCompile Include="..\..\libavcodec\autorename_libavcodec_flacdsp.c" />
+    <ClCompile Include="..\..\libavcodec\autorename_libavcodec_hpeldsp.c" />
+    <ClCompile Include="..\..\libavcodec\autorename_libavcodec_mpegaudiodsp.c" />
+    <ClCompile Include="..\..\libavcodec\autorename_libavcodec_sbrdsp.c" />
+    <ClCompile Include="..\..\libavcodec\autorename_libavcodec_utils.c" />
+    <ClCompile Include="..\..\libavcodec\autorename_libavcodec_videodsp.c" />
+    <ClCompile Include="..\..\libavcodec\autorename_libavcodec_vorbisdsp.c" />
+    <ClCompile Include="..\..\libavcodec\autorename_libavcodec_vp3dsp.c" />
+    <ClCompile Include="..\..\libavcodec\autorename_libavcodec_vp8dsp.c" />
+    <ClCompile Include="..\..\libavcodec\avdct.c" />
+    <ClCompile Include="..\..\libavcodec\avfft.c" />
+    <ClCompile Include="..\..\libavcodec\avpacket.c" />
+    <ClCompile Include="..\..\libavcodec\bitstream.c" />
+    <ClCompile Include="..\..\libavcodec\bitstream_filter.c" />
+    <ClCompile Include="..\..\libavcodec\bitstream_filters.c" />
+    <ClCompile Include="..\..\libavcodec\bsf.c" />
+    <ClCompile Include="..\..\libavcodec\cabac.c" />
+    <ClCompile Include="..\..\libavcodec\cbrt_data.c" />
+    <ClCompile Include="..\..\libavcodec\codec_desc.c" />
+    <ClCompile Include="..\..\libavcodec\d3d11va.c" />
+    <ClCompile Include="..\..\libavcodec\dct.c" />
+    <ClCompile Include="..\..\libavcodec\dct32_fixed.c" />
+    <ClCompile Include="..\..\libavcodec\dct32_float.c" />
+    <ClCompile Include="..\..\libavcodec\dirac.c" />
+    <ClCompile Include="..\..\libavcodec\dv_profile.c" />
+    <ClCompile Include="..\..\libavcodec\fft_fixed.c" />
+    <ClCompile Include="..\..\libavcodec\fft_fixed_32.c" />
+    <ClCompile Include="..\..\libavcodec\fft_float.c" />
+    <ClCompile Include="..\..\libavcodec\fft_init_table.c" />
+    <ClCompile Include="..\..\libavcodec\flac.c" />
+    <ClCompile Include="..\..\libavcodec\flacdata.c" />
+    <ClCompile Include="..\..\libavcodec\flac_parser.c" />
+    <ClCompile Include="..\..\libavcodec\golomb.c" />
+    <ClCompile Include="..\..\libavcodec\h2645_parse.c" />
+    <ClCompile Include="..\..\libavcodec\h264chroma.c" />
+    <ClCompile Include="..\..\libavcodec\h264data.c" />
+    <ClCompile Include="..\..\libavcodec\h264dec.c" />
+    <ClCompile Include="..\..\libavcodec\h264dsp.c" />
+    <ClCompile Include="..\..\libavcodec\h264idct.c" />
+    <ClCompile Include="..\..\libavcodec\h264pred.c" />
+    <ClCompile Include="..\..\libavcodec\h264qpel.c" />
+    <ClCompile Include="..\..\libavcodec\h264_cabac.c" />
+    <ClCompile Include="..\..\libavcodec\h264_cavlc.c" />
+    <ClCompile Include="..\..\libavcodec\h264_direct.c" />
+    <ClCompile Include="..\..\libavcodec\h264_loopfilter.c" />
+    <ClCompile Include="..\..\libavcodec\h264_mb.c" />
+    <ClCompile Include="..\..\libavcodec\h264_parse.c" />
+    <ClCompile Include="..\..\libavcodec\h264_parser.c" />
+    <ClCompile Include="..\..\libavcodec\h264_picture.c" />
+    <ClCompile Include="..\..\libavcodec\h264_ps.c" />
+    <ClCompile Include="..\..\libavcodec\h264_refs.c" />
+    <ClCompile Include="..\..\libavcodec\h264_sei.c" />
+    <ClCompile Include="..\..\libavcodec\h264_slice.c" />
+    <ClCompile Include="..\..\libavcodec\imdct15.c" />
+    <ClCompile Include="..\..\libavcodec\imgconvert.c" />
+    <ClCompile Include="..\..\libavcodec\jni.c" />
+    <ClCompile Include="..\..\libavcodec\kbdwin.c" />
+    <ClCompile Include="..\..\libavcodec\libopus.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\libavcodec\libopusdec.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\libavcodec\mathtables.c" />
+    <ClCompile Include="..\..\libavcodec\mdct_fixed.c" />
+    <ClCompile Include="..\..\libavcodec\mdct_fixed_32.c" />
+    <ClCompile Include="..\..\libavcodec\mdct_float.c" />
+    <ClCompile Include="..\..\libavcodec\mediacodec.c" />
+    <ClCompile Include="..\..\libavcodec\mpeg12data.c" />
+    <ClCompile Include="..\..\libavcodec\mpeg4audio.c" />
+    <ClCompile Include="..\..\libavcodec\mpegaudio.c" />
+    <ClCompile Include="..\..\libavcodec\mpegaudiodata.c" />
+    <ClCompile Include="..\..\libavcodec\mpegaudiodecheader.c" />
+    <ClCompile Include="..\..\libavcodec\mpegaudiodec_fixed.c" />
+    <ClCompile Include="..\..\libavcodec\mpegaudiodsp_data.c" />
+    <ClCompile Include="..\..\libavcodec\mpegaudiodsp_fixed.c" />
+    <ClCompile Include="..\..\libavcodec\mpegaudiodsp_float.c" />
+    <ClCompile Include="..\..\libavcodec\mpegaudio_parser.c" />
+    <ClCompile Include="..\..\libavcodec\options.c" />
+    <ClCompile Include="..\..\libavcodec\opus.c" />
+    <ClCompile Include="..\..\libavcodec\opus_parser.c" />
+    <ClCompile Include="..\..\libavcodec\parser.c" />
+    <ClCompile Include="..\..\libavcodec\pcm.c" />
+    <ClCompile Include="..\..\libavcodec\profiles.c" />
+    <ClCompile Include="..\..\libavcodec\pthread.c" />
+    <ClCompile Include="..\..\libavcodec\pthread_frame.c" />
+    <ClCompile Include="..\..\libavcodec\pthread_slice.c" />
+    <ClCompile Include="..\..\libavcodec\qsv_api.c" />
+    <ClCompile Include="..\..\libavcodec\raw.c" />
+    <ClCompile Include="..\..\libavcodec\rdft.c" />
+    <ClCompile Include="..\..\libavcodec\sinewin.c" />
+    <ClCompile Include="..\..\libavcodec\sinewin_fixed.c" />
+    <ClCompile Include="..\..\libavcodec\startcode.c" />
+    <ClCompile Include="..\..\libavcodec\vorbis.c" />
+    <ClCompile Include="..\..\libavcodec\vorbisdec.c" />
+    <ClCompile Include="..\..\libavcodec\vorbis_data.c" />
+    <ClCompile Include="..\..\libavcodec\vorbis_parser.c" />
+    <ClCompile Include="..\..\libavcodec\vp3.c" />
+    <ClCompile Include="..\..\libavcodec\vp3_parser.c" />
+    <ClCompile Include="..\..\libavcodec\vp56rac.c" />
+    <ClCompile Include="..\..\libavcodec\vp8.c" />
+    <ClCompile Include="..\..\libavcodec\vp8_parser.c" />
+    <ClCompile Include="..\..\libavcodec\x86\aacpsdsp_init.c" />
+    <ClCompile Include="..\..\libavcodec\x86\autorename_libavcodec_x86_videodsp_init.c" />
+    <ClCompile Include="..\..\libavcodec\x86\autorename_libavcodec_x86_vorbisdsp_init.c" />
+    <ClCompile Include="..\..\libavcodec\x86\constants.c" />
+    <ClCompile Include="..\..\libavcodec\x86\dct_init.c" />
+    <ClCompile Include="..\..\libavcodec\x86\fft_init.c" />
+    <ClCompile Include="..\..\libavcodec\x86\flacdsp_init.c" />
+    <ClCompile Include="..\..\libavcodec\x86\h264chroma_init.c" />
+    <ClCompile Include="..\..\libavcodec\x86\h264dsp_init.c" />
+    <ClCompile Include="..\..\libavcodec\x86\h264_intrapred_init.c" />
+    <ClCompile Include="..\..\libavcodec\x86\h264_qpel.c" />
+    <ClCompile Include="..\..\libavcodec\x86\hpeldsp_init.c" />
+    <ClCompile Include="..\..\libavcodec\x86\mpegaudiodsp.c" />
+    <ClCompile Include="..\..\libavcodec\x86\sbrdsp_init.c" />
+    <ClCompile Include="..\..\libavcodec\x86\vp3dsp_init.c" />
+    <ClCompile Include="..\..\libavcodec\x86\vp8dsp_init.c" />
+    <ClCompile Include="..\..\libavcodec\xiph.c" />
+    <ClCompile Include="..\..\libavformat\aacdec.c" />
+    <ClCompile Include="..\..\libavformat\allformats.c" />
+    <ClCompile Include="..\..\libavformat\apetag.c" />
+    <ClCompile Include="..\..\libavformat\autorename_libavformat_options.c" />
+    <ClCompile Include="..\..\libavformat\autorename_libavformat_pcm.c" />
+    <ClCompile Include="..\..\libavformat\autorename_libavformat_utils.c" />
+    <ClCompile Include="..\..\libavformat\avio.c" />
+    <ClCompile Include="..\..\libavformat\aviobuf.c" />
+    <ClCompile Include="..\..\libavformat\cutils.c" />
+    <ClCompile Include="..\..\libavformat\dump.c" />
+    <ClCompile Include="..\..\libavformat\flacdec.c" />
+    <ClCompile Include="..\..\libavformat\flac_picture.c" />
+    <ClCompile Include="..\..\libavformat\format.c" />
+    <ClCompile Include="..\..\libavformat\id3v1.c" />
+    <ClCompile Include="..\..\libavformat\id3v2.c" />
+    <ClCompile Include="..\..\libavformat\img2.c" />
+    <ClCompile Include="..\..\libavformat\isom.c" />
+    <ClCompile Include="..\..\libavformat\matroska.c" />
+    <ClCompile Include="..\..\libavformat\matroskadec.c" />
+    <ClCompile Include="..\..\libavformat\metadata.c" />
+    <ClCompile Include="..\..\libavformat\mov.c" />
+    <ClCompile Include="..\..\libavformat\mov_chan.c" />
+    <ClCompile Include="..\..\libavformat\mp3dec.c" />
+    <ClCompile Include="..\..\libavformat\mux.c" />
+    <ClCompile Include="..\..\libavformat\oggdec.c" />
+    <ClCompile Include="..\..\libavformat\oggparsecelt.c" />
+    <ClCompile Include="..\..\libavformat\oggparsedaala.c" />
+    <ClCompile Include="..\..\libavformat\oggparsedirac.c" />
+    <ClCompile Include="..\..\libavformat\oggparseflac.c" />
+    <ClCompile Include="..\..\libavformat\oggparseogm.c" />
+    <ClCompile Include="..\..\libavformat\oggparseopus.c" />
+    <ClCompile Include="..\..\libavformat\oggparseskeleton.c" />
+    <ClCompile Include="..\..\libavformat\oggparsespeex.c" />
+    <ClCompile Include="..\..\libavformat\oggparsetheora.c" />
+    <ClCompile Include="..\..\libavformat\oggparsevorbis.c" />
+    <ClCompile Include="..\..\libavformat\oggparsevp8.c" />
+    <ClCompile Include="..\..\libavformat\os_support.c" />
+    <ClCompile Include="..\..\libavformat\protocols.c" />
+    <ClCompile Include="..\..\libavformat\qtpalette.c" />
+    <ClCompile Include="..\..\libavformat\rawdec.c" />
+    <ClCompile Include="..\..\libavformat\replaygain.c" />
+    <ClCompile Include="..\..\libavformat\riff.c" />
+    <ClCompile Include="..\..\libavformat\riffdec.c" />
+    <ClCompile Include="..\..\libavformat\rmsipr.c" />
+    <ClCompile Include="..\..\libavformat\url.c" />
+    <ClCompile Include="..\..\libavformat\vorbiscomment.c" />
+    <ClCompile Include="..\..\libavformat\wavdec.c" />
+    <ClCompile Include="..\..\libavutil\aes.c" />
+    <ClCompile Include="..\..\libavutil\aes_ctr.c" />
+    <ClCompile Include="..\..\libavutil\autorename_libavutil_cpu.c" />
+    <ClCompile Include="..\..\libavutil\autorename_libavutil_fixed_dsp.c" />
+    <ClCompile Include="..\..\libavutil\autorename_libavutil_float_dsp.c" />
+    <ClCompile Include="..\..\libavutil\avstring.c" />
+    <ClCompile Include="..\..\libavutil\base64.c" />
+    <ClCompile Include="..\..\libavutil\bprint.c" />
+    <ClCompile Include="..\..\libavutil\buffer.c" />
+    <ClCompile Include="..\..\libavutil\camellia.c" />
+    <ClCompile Include="..\..\libavutil\channel_layout.c" />
+    <ClCompile Include="..\..\libavutil\color_utils.c" />
+    <ClCompile Include="..\..\libavutil\crc.c" />
+    <ClCompile Include="..\..\libavutil\dict.c" />
+    <ClCompile Include="..\..\libavutil\display.c" />
+    <ClCompile Include="..\..\libavutil\downmix_info.c" />
+    <ClCompile Include="..\..\libavutil\error.c" />
+    <ClCompile Include="..\..\libavutil\eval.c" />
+    <ClCompile Include="..\..\libavutil\fifo.c" />
+    <ClCompile Include="..\..\libavutil\file_open.c" />
+    <ClCompile Include="..\..\libavutil\frame.c" />
+    <ClCompile Include="..\..\libavutil\hwcontext.c" />
+    <ClCompile Include="..\..\libavutil\imgutils.c" />
+    <ClCompile Include="..\..\libavutil\integer.c" />
+    <ClCompile Include="..\..\libavutil\intmath.c" />
+    <ClCompile Include="..\..\libavutil\lfg.c" />
+    <ClCompile Include="..\..\libavutil\log.c" />
+    <ClCompile Include="..\..\libavutil\log2_tab.c" />
+    <ClCompile Include="..\..\libavutil\mastering_display_metadata.c" />
+    <ClCompile Include="..\..\libavutil\mathematics.c" />
+    <ClCompile Include="..\..\libavutil\md5.c" />
+    <ClCompile Include="..\..\libavutil\mem.c" />
+    <ClCompile Include="..\..\libavutil\opt.c" />
+    <ClCompile Include="..\..\libavutil\parseutils.c" />
+    <ClCompile Include="..\..\libavutil\pixdesc.c" />
+    <ClCompile Include="..\..\libavutil\pixelutils.c" />
+    <ClCompile Include="..\..\libavutil\random_seed.c" />
+    <ClCompile Include="..\..\libavutil\rational.c" />
+    <ClCompile Include="..\..\libavutil\reverse.c" />
+    <ClCompile Include="..\..\libavutil\samplefmt.c" />
+    <ClCompile Include="..\..\libavutil\sha.c" />
+    <ClCompile Include="..\..\libavutil\stereo3d.c" />
+    <ClCompile Include="..\..\libavutil\tea.c" />
+    <ClCompile Include="..\..\libavutil\threadmessage.c" />
+    <ClCompile Include="..\..\libavutil\time.c" />
+    <ClCompile Include="..\..\libavutil\timecode.c" />
+    <ClCompile Include="..\..\libavutil\twofish.c" />
+    <ClCompile Include="..\..\libavutil\utils.c" />
+    <ClCompile Include="..\..\libavutil\x86\autorename_libavutil_x86_cpu.c" />
+    <ClCompile Include="..\..\libavutil\x86\autorename_libavutil_x86_float_dsp_init.c" />
+    <ClCompile Include="..\..\libavutil\x86\fixed_dsp_init.c" />
+    <ClCompile Include="..\..\libavutil\x86\lls_init.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ffmpeg.def" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

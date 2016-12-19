@@ -1,0 +1,551 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{86B3A9FC-25B7-4987-86F9-8735AE50E65F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>opencv</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OPENCV_EXPORTS;__OPENCV_BUILD=1;CVAPI_EXPORTS;IW_BUILD;ICV_BASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../3rdparty/ippicv/ippicv_win/include;../../3rdparty/ippicv/ippiw_win/include;../../3rdparty/include/opencl/1.2;../../3rdparty/zlib;../..;../../autogen;../../modules/core/include;../../modules/core/src;../../modules/imgproc/include;../../modules/imgproc/src;../../modules/flann/include;../../modules/flann/src;../../modules/video/include;../../modules/video/src;../../modules/ml/src;../../modules/ml/include;../../modules/photo/include;../../modules/photo/src;../../modules/shape/include;../../modules/shape/src;../../modules/imgcodecs/include;../../modules/imgcodecs/src;../../modules/videoio/include;../../modules/videoio/src;../../modules/objdetect/include;../../modules/objdetect/src;../../modules/superres/include;../../modules/superres/src;../../modules/features2d/include;../../modules/features2d/src;../../modules/calib3d/include;../../modules/calib3d/src;../../modules/stitching/include;../../modules/stitching/src;../../modules/videostab/include;../../modules/videostab/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <DebugInformationFormat>None</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>..\..\3rdparty\ippicv\ippicv_win\lib\ia32\ippicvmt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetDir)$(TargetName).lib ..\..\..\..\linker\windows\lib\
+copy $(TargetDir)$(TargetName).dll ..\..\..\..\linker\windows\dll\</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;OPENCV_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_core.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_color_convert_all.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_color_convert_rgbs.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_filter_bilateral.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_filter_box.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_filter_canny.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_filter_gaussian.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_filter_general.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_filter_laplacian.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_filter_morphology.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_filter_scharr.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_filter_sobel.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_op_copy.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_op_copy_channel.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_op_copy_make_border.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_op_copy_merge.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_op_copy_split.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_op_scale.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_op_set.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_op_set_channel.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_op_swap_channels.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_transform_mirror.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_transform_resize.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_transform_rotate.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_image_transform_warpaffine.c" />
+    <ClCompile Include="..\..\3rdparty\ippicv\ippiw_win\src\iw_own.c" />
+    <ClCompile Include="..\..\3rdparty\zlib\adler32.c" />
+    <ClCompile Include="..\..\3rdparty\zlib\compress.c" />
+    <ClCompile Include="..\..\3rdparty\zlib\crc32.c" />
+    <ClCompile Include="..\..\3rdparty\zlib\deflate.c" />
+    <ClCompile Include="..\..\3rdparty\zlib\gzclose.c" />
+    <ClCompile Include="..\..\3rdparty\zlib\gzlib.c" />
+    <ClCompile Include="..\..\3rdparty\zlib\gzread.c" />
+    <ClCompile Include="..\..\3rdparty\zlib\gzwrite.c" />
+    <ClCompile Include="..\..\3rdparty\zlib\infback.c" />
+    <ClCompile Include="..\..\3rdparty\zlib\inffast.c" />
+    <ClCompile Include="..\..\3rdparty\zlib\inflate.c" />
+    <ClCompile Include="..\..\3rdparty\zlib\inftrees.c" />
+    <ClCompile Include="..\..\3rdparty\zlib\trees.c" />
+    <ClCompile Include="..\..\3rdparty\zlib\uncompr.c" />
+    <ClCompile Include="..\..\3rdparty\zlib\zutil.c" />
+    <ClCompile Include="..\..\autogen\accum.avx.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CV_CPU_DISPATCH_MODE=AVX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <EnableEnhancedInstructionSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AdvancedVectorExtensions</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <ClCompile Include="..\..\autogen\mathfuncs_core.avx.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CV_CPU_DISPATCH_MODE=AVX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <EnableEnhancedInstructionSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AdvancedVectorExtensions</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <ClCompile Include="..\..\autogen\opencl_kernels_calib3d.cpp" />
+    <ClCompile Include="..\..\autogen\opencl_kernels_core.cpp" />
+    <ClCompile Include="..\..\autogen\opencl_kernels_features2d.cpp" />
+    <ClCompile Include="..\..\autogen\opencl_kernels_imgproc.cpp" />
+    <ClCompile Include="..\..\autogen\opencl_kernels_objdetect.cpp" />
+    <ClCompile Include="..\..\autogen\opencl_kernels_photo.cpp" />
+    <ClCompile Include="..\..\autogen\opencl_kernels_stitching.cpp" />
+    <ClCompile Include="..\..\autogen\opencl_kernels_superres.cpp" />
+    <ClCompile Include="..\..\autogen\opencl_kernels_video.cpp" />
+    <ClCompile Include="..\..\autogen\stat.sse4_2.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CV_CPU_DISPATCH_MODE=SSE4_2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <EnableEnhancedInstructionSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\calib3d\src\ap3p.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\calibinit.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\calibration.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\checkchessboard.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\circlesgrid.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\compat_ptsetreg.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\compat_stereo.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\dls.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\epnp.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\fisheye.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\five-point.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\fundam.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\homography_decomp.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\levmarq.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\main.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)calib3d\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\calib3d\src\p3p.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\polynom_solver.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\posit.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\ptsetreg.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\quadsubpix.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\rho.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\solvepnp.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\stereobm.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\stereosgbm.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\triangulate.cpp" />
+    <ClCompile Include="..\..\modules\calib3d\src\upnp.cpp" />
+    <ClCompile Include="..\..\modules\core\src\algorithm.cpp" />
+    <ClCompile Include="..\..\modules\core\src\alloc.cpp" />
+    <ClCompile Include="..\..\modules\core\src\arithm.cpp" />
+    <ClCompile Include="..\..\modules\core\src\array.cpp" />
+    <ClCompile Include="..\..\modules\core\src\batch_distance.cpp" />
+    <ClCompile Include="..\..\modules\core\src\channels.cpp" />
+    <ClCompile Include="..\..\modules\core\src\command_line_parser.cpp" />
+    <ClCompile Include="..\..\modules\core\src\conjugate_gradient.cpp" />
+    <ClCompile Include="..\..\modules\core\src\convert.cpp" />
+    <ClCompile Include="..\..\modules\core\src\convert.fp16.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CV_CPU_DISPATCH_MODE=FP16;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\core\src\convert.sse4_1.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CV_CPU_DISPATCH_MODE=SSE4_1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\core\src\convert_c.cpp" />
+    <ClCompile Include="..\..\modules\core\src\convert_scale.cpp" />
+    <ClCompile Include="..\..\modules\core\src\copy.cpp" />
+    <ClCompile Include="..\..\modules\core\src\count_non_zero.cpp" />
+    <ClCompile Include="..\..\modules\core\src\cuda_gpu_mat.cpp" />
+    <ClCompile Include="..\..\modules\core\src\cuda_host_mem.cpp" />
+    <ClCompile Include="..\..\modules\core\src\cuda_info.cpp" />
+    <ClCompile Include="..\..\modules\core\src\cuda_stream.cpp" />
+    <ClCompile Include="..\..\modules\core\src\datastructs.cpp" />
+    <ClCompile Include="..\..\modules\core\src\directx.cpp" />
+    <ClCompile Include="..\..\modules\core\src\downhill_simplex.cpp" />
+    <ClCompile Include="..\..\modules\core\src\dxt.cpp" />
+    <ClCompile Include="..\..\modules\core\src\glob.cpp" />
+    <ClCompile Include="..\..\modules\core\src\gl_core_3_1.cpp" />
+    <ClCompile Include="..\..\modules\core\src\hal_internal.cpp" />
+    <ClCompile Include="..\..\modules\core\src\kmeans.cpp" />
+    <ClCompile Include="..\..\modules\core\src\lapack.cpp" />
+    <ClCompile Include="..\..\modules\core\src\lda.cpp" />
+    <ClCompile Include="..\..\modules\core\src\logger.cpp" />
+    <ClCompile Include="..\..\modules\core\src\lpsolver.cpp" />
+    <ClCompile Include="..\..\modules\core\src\lut.cpp" />
+    <ClCompile Include="..\..\modules\core\src\mathfuncs.cpp" />
+    <ClCompile Include="..\..\modules\core\src\mathfuncs_core.dispatch.cpp" />
+    <ClCompile Include="..\..\modules\core\src\matmul.cpp" />
+    <ClCompile Include="..\..\modules\core\src\matrix.cpp" />
+    <ClCompile Include="..\..\modules\core\src\matrix_c.cpp" />
+    <ClCompile Include="..\..\modules\core\src\matrix_decomp.cpp" />
+    <ClCompile Include="..\..\modules\core\src\matrix_expressions.cpp" />
+    <ClCompile Include="..\..\modules\core\src\matrix_iterator.cpp" />
+    <ClCompile Include="..\..\modules\core\src\matrix_operations.cpp" />
+    <ClCompile Include="..\..\modules\core\src\matrix_sparse.cpp" />
+    <ClCompile Include="..\..\modules\core\src\matrix_wrap.cpp" />
+    <ClCompile Include="..\..\modules\core\src\mean.cpp" />
+    <ClCompile Include="..\..\modules\core\src\merge.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)core\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\core\src\minmax.cpp" />
+    <ClCompile Include="..\..\modules\core\src\norm.cpp" />
+    <ClCompile Include="..\..\modules\core\src\ocl.cpp" />
+    <ClCompile Include="..\..\modules\core\src\opencl\runtime\opencl_clamdblas.cpp" />
+    <ClCompile Include="..\..\modules\core\src\opencl\runtime\opencl_clamdfft.cpp" />
+    <ClCompile Include="..\..\modules\core\src\opencl\runtime\opencl_core.cpp" />
+    <ClCompile Include="..\..\modules\core\src\opengl.cpp" />
+    <ClCompile Include="..\..\modules\core\src\out.cpp" />
+    <ClCompile Include="..\..\modules\core\src\ovx.cpp" />
+    <ClCompile Include="..\..\modules\core\src\parallel.cpp" />
+    <ClCompile Include="..\..\modules\core\src\parallel_impl.cpp" />
+    <ClCompile Include="..\..\modules\core\src\pca.cpp" />
+    <ClCompile Include="..\..\modules\core\src\persistence.cpp" />
+    <ClCompile Include="..\..\modules\core\src\persistence_base64.cpp" />
+    <ClCompile Include="..\..\modules\core\src\persistence_c.cpp" />
+    <ClCompile Include="..\..\modules\core\src\persistence_cpp.cpp" />
+    <ClCompile Include="..\..\modules\core\src\persistence_json.cpp" />
+    <ClCompile Include="..\..\modules\core\src\persistence_types.cpp" />
+    <ClCompile Include="..\..\modules\core\src\persistence_xml.cpp" />
+    <ClCompile Include="..\..\modules\core\src\persistence_yml.cpp" />
+    <ClCompile Include="..\..\modules\core\src\rand.cpp" />
+    <ClCompile Include="..\..\modules\core\src\softfloat.cpp" />
+    <ClCompile Include="..\..\modules\core\src\split.cpp" />
+    <ClCompile Include="..\..\modules\core\src\stat.dispatch.cpp" />
+    <ClCompile Include="..\..\modules\core\src\stat_c.cpp" />
+    <ClCompile Include="..\..\modules\core\src\stl.cpp" />
+    <ClCompile Include="..\..\modules\core\src\sum.cpp" />
+    <ClCompile Include="..\..\modules\core\src\system.cpp" />
+    <ClCompile Include="..\..\modules\core\src\tables.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)core\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\core\src\trace.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)core\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\core\src\types.cpp" />
+    <ClCompile Include="..\..\modules\core\src\umatrix.cpp" />
+    <ClCompile Include="..\..\modules\core\src\utils\filesystem.cpp" />
+    <ClCompile Include="..\..\modules\core\src\va_intel.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\agast.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\agast_score.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\akaze.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\bagofwords.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\blobdetector.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\brisk.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\draw.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\dynamic.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\evaluation.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\fast.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\fast_score.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\feature2d.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\gftt.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\kaze.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\kaze\AKAZEFeatures.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\kaze\fed.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\kaze\KAZEFeatures.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\kaze\nldiffusion_functions.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\keypoint.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\main.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\matchers.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\mser.cpp" />
+    <ClCompile Include="..\..\modules\features2d\src\orb.cpp" />
+    <ClCompile Include="..\..\modules\flann\src\flann.cpp" />
+    <ClCompile Include="..\..\modules\flann\src\miniflann.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\accum.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\accum.dispatch.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\approx.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\blend.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\canny.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\clahe.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\color.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\colormap.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\connectedcomponents.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\contours.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\convhull.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\corner.avx.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CV_CPU_DISPATCH_MODE=AVX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\imgproc\src\corner.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\cornersubpix.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\demosaicing.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\deriv.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\distransform.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\drawing.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\emd.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\featureselect.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\filter.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\floodfill.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\gabor.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\generalized_hough.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\geometry.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\grabcut.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\hershey_fonts.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\histogram.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\hough.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\imgwarp.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\imgwarp.sse4_1.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CV_CPU_COMPILE_SSE4_1=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\imgproc\src\intersection.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\linefit.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\lsd.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\main.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)imgproc\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\imgproc\src\matchcontours.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\min_enclosing_triangle.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\moments.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\morph.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\phasecorr.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\pyramids.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\resize.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\resize.sse4_1.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CV_CPU_DISPATCH_MODE=SSE4_1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <EnableEnhancedInstructionSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\imgproc\src\rotcalipers.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\samplers.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\segmentation.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\shapedescr.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\smooth.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\spatialgradient.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\subdivision2d.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\sumpixels.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\tables.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\templmatch.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\thresh.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\undistort.cpp" />
+    <ClCompile Include="..\..\modules\imgproc\src\utils.cpp" />
+    <ClCompile Include="..\..\modules\ml\src\ann_mlp.cpp" />
+    <ClCompile Include="..\..\modules\ml\src\boost.cpp" />
+    <ClCompile Include="..\..\modules\ml\src\data.cpp" />
+    <ClCompile Include="..\..\modules\ml\src\em.cpp" />
+    <ClCompile Include="..\..\modules\ml\src\gbt.cpp" />
+    <ClCompile Include="..\..\modules\ml\src\inner_functions.cpp" />
+    <ClCompile Include="..\..\modules\ml\src\kdtree.cpp" />
+    <ClCompile Include="..\..\modules\ml\src\knearest.cpp" />
+    <ClCompile Include="..\..\modules\ml\src\lr.cpp" />
+    <ClCompile Include="..\..\modules\ml\src\nbayes.cpp" />
+    <ClCompile Include="..\..\modules\ml\src\rtrees.cpp" />
+    <ClCompile Include="..\..\modules\ml\src\svm.cpp" />
+    <ClCompile Include="..\..\modules\ml\src\svmsgd.cpp" />
+    <ClCompile Include="..\..\modules\ml\src\testset.cpp" />
+    <ClCompile Include="..\..\modules\ml\src\tree.cpp" />
+    <ClCompile Include="..\..\modules\objdetect\src\cascadedetect.cpp" />
+    <ClCompile Include="..\..\modules\objdetect\src\cascadedetect_convert.cpp" />
+    <ClCompile Include="..\..\modules\objdetect\src\detection_based_tracker.cpp" />
+    <ClCompile Include="..\..\modules\objdetect\src\haar.avx.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CV_CPU_DISPATCH_MODE=AVX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\objdetect\src\haar.cpp" />
+    <ClCompile Include="..\..\modules\objdetect\src\hog.cpp" />
+    <ClCompile Include="..\..\modules\objdetect\src\main.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)objdetect\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\photo\src\align.cpp" />
+    <ClCompile Include="..\..\modules\photo\src\calibrate.cpp" />
+    <ClCompile Include="..\..\modules\photo\src\contrast_preserve.cpp" />
+    <ClCompile Include="..\..\modules\photo\src\denoise_tvl1.cpp" />
+    <ClCompile Include="..\..\modules\photo\src\denoising.cpp" />
+    <ClCompile Include="..\..\modules\photo\src\denoising.cuda.cpp" />
+    <ClCompile Include="..\..\modules\photo\src\hdr_common.cpp" />
+    <ClCompile Include="..\..\modules\photo\src\inpaint.cpp" />
+    <ClCompile Include="..\..\modules\photo\src\merge.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)photo\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\photo\src\npr.cpp" />
+    <ClCompile Include="..\..\modules\photo\src\seamless_cloning.cpp" />
+    <ClCompile Include="..\..\modules\photo\src\seamless_cloning_impl.cpp" />
+    <ClCompile Include="..\..\modules\photo\src\tonemap.cpp" />
+    <ClCompile Include="..\..\modules\shape\src\aff_trans.cpp" />
+    <ClCompile Include="..\..\modules\shape\src\emdL1.cpp" />
+    <ClCompile Include="..\..\modules\shape\src\haus_dis.cpp" />
+    <ClCompile Include="..\..\modules\shape\src\hist_cost.cpp" />
+    <ClCompile Include="..\..\modules\shape\src\sc_dis.cpp" />
+    <ClCompile Include="..\..\modules\shape\src\tps_trans.cpp" />
+    <ClCompile Include="..\..\modules\stitching\src\autocalib.cpp" />
+    <ClCompile Include="..\..\modules\stitching\src\blenders.cpp" />
+    <ClCompile Include="..\..\modules\stitching\src\camera.cpp" />
+    <ClCompile Include="..\..\modules\stitching\src\exposure_compensate.cpp" />
+    <ClCompile Include="..\..\modules\stitching\src\matchers.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)stitching\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\stitching\src\motion_estimators.cpp" />
+    <ClCompile Include="..\..\modules\stitching\src\seam_finders.cpp" />
+    <ClCompile Include="..\..\modules\stitching\src\stitcher.cpp" />
+    <ClCompile Include="..\..\modules\stitching\src\timelapsers.cpp" />
+    <ClCompile Include="..\..\modules\stitching\src\util.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)stitching\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\stitching\src\warpers.cpp" />
+    <ClCompile Include="..\..\modules\stitching\src\warpers_cuda.cpp" />
+    <ClCompile Include="..\..\modules\superres\src\btv_l1.cpp" />
+    <ClCompile Include="..\..\modules\superres\src\btv_l1_cuda.cpp" />
+    <ClCompile Include="..\..\modules\superres\src\frame_source.cpp" />
+    <ClCompile Include="..\..\modules\superres\src\input_array_utility.cpp" />
+    <ClCompile Include="..\..\modules\superres\src\optical_flow.cpp" />
+    <ClCompile Include="..\..\modules\superres\src\super_resolution.cpp" />
+    <ClCompile Include="..\..\modules\videostab\src\deblurring.cpp" />
+    <ClCompile Include="..\..\modules\videostab\src\fast_marching.cpp" />
+    <ClCompile Include="..\..\modules\videostab\src\frame_source.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)videostab\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\videostab\src\global_motion.cpp" />
+    <ClCompile Include="..\..\modules\videostab\src\inpainting.cpp" />
+    <ClCompile Include="..\..\modules\videostab\src\log.cpp" />
+    <ClCompile Include="..\..\modules\videostab\src\motion_stabilizing.cpp" />
+    <ClCompile Include="..\..\modules\videostab\src\optical_flow.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)videostab\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\videostab\src\outlier_rejection.cpp" />
+    <ClCompile Include="..\..\modules\videostab\src\stabilizer.cpp" />
+    <ClCompile Include="..\..\modules\videostab\src\wobble_suppression.cpp" />
+    <ClCompile Include="..\..\modules\video\src\bgfg_gaussmix2.cpp" />
+    <ClCompile Include="..\..\modules\video\src\bgfg_KNN.cpp" />
+    <ClCompile Include="..\..\modules\video\src\camshift.cpp" />
+    <ClCompile Include="..\..\modules\video\src\compat_video.cpp" />
+    <ClCompile Include="..\..\modules\video\src\ecc.cpp" />
+    <ClCompile Include="..\..\modules\video\src\kalman.cpp" />
+    <ClCompile Include="..\..\modules\video\src\lkpyramid.cpp" />
+    <ClCompile Include="..\..\modules\video\src\optflowgf.cpp" />
+    <ClCompile Include="..\..\modules\video\src\tvl1flow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\autogen\opencl_kernels_calib3d.hpp" />
+    <ClInclude Include="..\..\autogen\opencl_kernels_core.hpp" />
+    <ClInclude Include="..\..\autogen\opencl_kernels_features2d.hpp" />
+    <ClInclude Include="..\..\autogen\opencl_kernels_imgproc.hpp" />
+    <ClInclude Include="..\..\autogen\opencl_kernels_objdetect.hpp" />
+    <ClInclude Include="..\..\autogen\opencl_kernels_photo.hpp" />
+    <ClInclude Include="..\..\autogen\opencl_kernels_stitching.hpp" />
+    <ClInclude Include="..\..\autogen\opencl_kernels_superres.hpp" />
+    <ClInclude Include="..\..\autogen\opencl_kernels_video.hpp" />
+    <ClInclude Include="..\..\modules\calib3d\src\circlesgrid.hpp" />
+    <ClInclude Include="..\..\modules\calib3d\src\dls.h" />
+    <ClInclude Include="..\..\modules\calib3d\src\epnp.h" />
+    <ClInclude Include="..\..\modules\calib3d\src\fisheye.hpp" />
+    <ClInclude Include="..\..\modules\calib3d\src\p3p.h" />
+    <ClInclude Include="..\..\modules\calib3d\src\polynom_solver.h" />
+    <ClInclude Include="..\..\modules\calib3d\src\precomp.hpp" />
+    <ClInclude Include="..\..\modules\calib3d\src\rho.h" />
+    <ClInclude Include="..\..\modules\calib3d\src\upnp.h" />
+    <ClInclude Include="..\..\modules\core\src\arithm_core.hpp" />
+    <ClInclude Include="..\..\modules\core\src\arithm_simd.hpp" />
+    <ClInclude Include="..\..\modules\core\src\bufferpool.impl.hpp" />
+    <ClInclude Include="..\..\modules\core\src\directx.inc.hpp" />
+    <ClInclude Include="..\..\modules\core\src\gl_core_3_1.hpp" />
+    <ClInclude Include="..\..\modules\core\src\hal_internal.hpp" />
+    <ClInclude Include="..\..\modules\core\src\hal_replacement.hpp" />
+    <ClInclude Include="..\..\modules\core\src\opencl\runtime\autogenerated\opencl_clamdblas_impl.hpp" />
+    <ClInclude Include="..\..\modules\core\src\opencl\runtime\autogenerated\opencl_clamdfft_impl.hpp" />
+    <ClInclude Include="..\..\modules\core\src\opencl\runtime\autogenerated\opencl_core_impl.hpp" />
+    <ClInclude Include="..\..\modules\core\src\opencl\runtime\autogenerated\opencl_gl_impl.hpp" />
+    <ClInclude Include="..\..\modules\core\src\opencl\runtime\runtime_common.hpp" />
+    <ClInclude Include="..\..\modules\core\src\precomp.hpp" />
+    <ClInclude Include="..\..\modules\features2d\src\agast_score.hpp" />
+    <ClInclude Include="..\..\modules\features2d\src\fast_score.hpp" />
+    <ClInclude Include="..\..\modules\features2d\src\kaze\AKAZEConfig.h" />
+    <ClInclude Include="..\..\modules\features2d\src\kaze\AKAZEFeatures.h" />
+    <ClInclude Include="..\..\modules\features2d\src\kaze\fed.h" />
+    <ClInclude Include="..\..\modules\features2d\src\kaze\KAZEConfig.h" />
+    <ClInclude Include="..\..\modules\features2d\src\kaze\KAZEFeatures.h" />
+    <ClInclude Include="..\..\modules\features2d\src\kaze\nldiffusion_functions.h" />
+    <ClInclude Include="..\..\modules\features2d\src\kaze\TEvolution.h" />
+    <ClInclude Include="..\..\modules\features2d\src\kaze\utils.h" />
+    <ClInclude Include="..\..\modules\features2d\src\precomp.hpp" />
+    <ClInclude Include="..\..\modules\flann\src\precomp.hpp" />
+    <ClInclude Include="..\..\modules\imgproc\src\filterengine.hpp" />
+    <ClInclude Include="..\..\modules\imgproc\src\gcgraph.hpp" />
+    <ClInclude Include="..\..\modules\imgproc\src\hal_replacement.hpp" />
+    <ClInclude Include="..\..\modules\imgproc\src\precomp.hpp" />
+    <ClInclude Include="..\..\modules\imgproc\src\_geom.h" />
+    <ClInclude Include="..\..\modules\ml\src\kdtree.hpp" />
+    <ClInclude Include="..\..\modules\ml\src\precomp.hpp" />
+    <ClInclude Include="..\..\modules\objdetect\src\cascadedetect.hpp" />
+    <ClInclude Include="..\..\modules\objdetect\src\precomp.hpp" />
+    <ClInclude Include="..\..\modules\photo\src\arrays.hpp" />
+    <ClInclude Include="..\..\modules\photo\src\contrast_preserve.hpp" />
+    <ClInclude Include="..\..\modules\photo\src\fast_nlmeans_denoising_invoker.hpp" />
+    <ClInclude Include="..\..\modules\photo\src\fast_nlmeans_denoising_invoker_commons.hpp" />
+    <ClInclude Include="..\..\modules\photo\src\fast_nlmeans_denoising_opencl.hpp" />
+    <ClInclude Include="..\..\modules\photo\src\fast_nlmeans_multi_denoising_invoker.hpp" />
+    <ClInclude Include="..\..\modules\photo\src\hdr_common.hpp" />
+    <ClInclude Include="..\..\modules\photo\src\npr.hpp" />
+    <ClInclude Include="..\..\modules\photo\src\precomp.hpp" />
+    <ClInclude Include="..\..\modules\photo\src\seamless_cloning.hpp" />
+    <ClInclude Include="..\..\modules\shape\src\emdL1_def.hpp" />
+    <ClInclude Include="..\..\modules\shape\src\precomp.hpp" />
+    <ClInclude Include="..\..\modules\shape\src\scd_def.hpp" />
+    <ClInclude Include="..\..\modules\stitching\src\precomp.hpp" />
+    <ClInclude Include="..\..\modules\stitching\src\util_log.hpp" />
+    <ClInclude Include="..\..\modules\superres\src\input_array_utility.hpp" />
+    <ClInclude Include="..\..\modules\superres\src\precomp.hpp" />
+    <ClInclude Include="..\..\modules\superres\src\ring_buffer.hpp" />
+    <ClInclude Include="..\..\modules\videostab\src\clp.hpp" />
+    <ClInclude Include="..\..\modules\videostab\src\precomp.hpp" />
+    <ClInclude Include="..\..\modules\video\src\lkpyramid.hpp" />
+    <ClInclude Include="..\..\modules\video\src\precomp.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\modules\core\version_string.inc" />
+    <None Include="..\..\modules\objdetect\src\opencl\cascadedetect.cl" />
+    <None Include="..\..\modules\objdetect\src\opencl\objdetect_hog.cl" />
+    <None Include="..\..\modules\photo\src\opencl\nlmeans.cl" />
+    <None Include="..\..\modules\stitching\src\opencl\multibandblend.cl" />
+    <None Include="..\..\modules\stitching\src\opencl\warpers.cl" />
+    <None Include="..\..\modules\superres\src\opencl\superres_btvl1.cl" />
+    <None Include="..\..\modules\video\src\opencl\bgfg_mog2.cl" />
+    <None Include="..\..\modules\video\src\opencl\optical_flow_farneback.cl" />
+    <None Include="..\..\modules\video\src\opencl\optical_flow_tvl1.cl" />
+    <None Include="..\..\modules\video\src\opencl\pyrlk.cl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
